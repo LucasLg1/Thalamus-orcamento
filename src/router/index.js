@@ -5,12 +5,17 @@ import HomeView from '../views/HomeView.vue'
 import Home2View from '../views/Home2View.vue'
 
 //Corrente
-import CorrenteCadastro from '../views/CorrenteCadastro'
-import AddDespesaCorrente from '../views/AddDespesaCorrente'
+import AddOrçamentoCorrente from '../views/AddOrçamentoCorrente'
+import AddCorrente from '../views/AddCorrente'
 import CorrentesView from '../views/CorrentesView'
 
 //Categoria
-import CategoriaCadastro from '../views/CategoriaCadastro'
+import AddCategoria from '../views/AddCategoria'
+
+//Projeto
+import AddOrçamentoProjeto from '../views/AddOrçamentoProjeto'
+import AddProjeto from '../views/AddProjeto'
+import ProjetosView from '../views/ProjetosView'
 
 
 const routes = [
@@ -27,28 +32,55 @@ const routes = [
   },
 
 
- //Corrente
-  {
-    path: '/corrente/novo',
-    name: 'CorrenteCadastro',
-    component: CorrenteCadastro
-  },
-  {
-    path: '/despesa/corrente/novo',
-    name: 'AddDespesaCorrente',
-    component: AddDespesaCorrente
-  },
 
+
+  //Categoria
   {
     path: '/categoria/novo',
-    name: 'Categoria',
-    component: CategoriaCadastro
+    name: 'AddCategoria',
+    component: AddCategoria
   },
+
+
+
+ //Corrente
+
+  {
+    path: '/orcamento/corrente',
+    name: 'AddOrçamentoCorrente',
+    component: AddOrçamentoCorrente
+  },
+  {
+    path: '/corrente/novo',
+    name: 'AddCorrente',
+    component: AddCorrente
+  },
+
   {
     path: '/correntes',
     name: 'Correntes',
     component: CorrentesView
   },
+
+  //Projeto
+
+  {
+    path: '/orcamento/projeto',
+    name: 'AddOrçamentoProjeto',
+    component: AddOrçamentoProjeto
+  },
+
+  {
+    path: '/projeto/novo',
+    name: 'AddProjeto',
+    component: AddProjeto
+  },
+  {
+    path: '/projetos',
+    name: 'Projetos',
+    component: ProjetosView
+  },
+
 
 
 

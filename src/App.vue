@@ -1,4 +1,16 @@
 <template>
+    <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/corrente/novo">Add Corrente</router-link> |
+        <router-link to="/orcamento/corrente">Add Orçamento Corrente</router-link> |
+        <router-link to="/correntes">Correntes</router-link> |
+        <router-link to="/categoria/novo">Add Categoria</router-link> |
+        <router-link to="/projeto/novo">Add Projeto</router-link> |
+        <router-link to="/orcamento/projeto">Add Despesa Projetos</router-link> |
+        <router-link to="/projetos">Projetos</router-link> |
+   
+    </nav>
+   
     <div class="router">
         <br><br><br>
 
@@ -119,8 +131,8 @@ nav a.router-link-exact-active {
 }
 
 .button-cadastro{
-    background-color: var(--botao-secondary);
-    color: white;
+    background-color: var(--dark-color);
+    color: white !important;
     border: none;
     border-radius: 4px !important;
     padding: 5px;
@@ -128,7 +140,8 @@ nav a.router-link-exact-active {
 }
 
 .button-cadastro:hover{
-    background-color: var(--botao-hover) !important;
+    background-color: var( --botao-secondary) !important;
+    color: white !important;
 }
 
 
