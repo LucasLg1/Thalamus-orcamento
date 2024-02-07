@@ -8,14 +8,18 @@
         <router-link to="/projeto/novo">Add Projeto</router-link> |
         <router-link to="/orcamento/projeto">Add Despesa Projetos</router-link> |
         <router-link to="/projetos">Projetos</router-link> |
-   
+        <router-link to="/materiais/solicitacao">Solicitação Material</router-link> |
+        <router-link to="/materiais/entrega">Entrega Material</router-link> |
+        <router-link to="/materiais/aprovacao">Aprovação Material</router-link> |
+
+    
     </nav>
-   
+    
     <div class="router">
         <br><br><br>
-
+    
         <router-view/>
-
+    
     </div>
     <FooterComponent></FooterComponent>
 </template>
@@ -34,6 +38,7 @@ export default {
 
     components: {
         FooterComponent: FooterComponent,
+
     }
 }
 </script>
@@ -51,9 +56,11 @@ export default {
     --menu-lateral-borda: #555;
 }
 
-.router{
-    margin-bottom: 100px;   
 
+
+
+.router {
+    margin-bottom: 100px;
 }
 
 nav {
@@ -130,21 +137,18 @@ nav a.router-link-exact-active {
     background-color: var(--botao-hover) !important;
 }
 
-.button-cadastro{
+.button-cadastro {
     background-color: var(--dark-color);
     color: white !important;
     border: none;
     border-radius: 4px !important;
     padding: 5px;
-
 }
 
-.button-cadastro:hover{
+.button-cadastro:hover {
     background-color: var( --botao-secondary) !important;
     color: white !important;
 }
-
-
 </style>
 
 

@@ -7,7 +7,7 @@ import Home2View from '../views/Home2View.vue'
 //Corrente
 import AddOrçamentoCorrente from '../views/AddOrçamentoCorrente'
 import AddCorrente from '../views/AddCorrente'
-import CorrentesView from '../views/CorrentesView'
+import CorrenteLista from '../views/CorrentesLista'
 
 //Categoria
 import AddCategoria from '../views/AddCategoria'
@@ -17,8 +17,13 @@ import AddOrçamentoProjeto from '../views/AddOrçamentoProjeto'
 import AddProjeto from '../views/AddProjeto'
 import ProjetosView from '../views/ProjetosView'
 
+//Materiais
+import AprovacaoMateriais from '../views/AprovaçãoMateriais'
+import EntregaMateriais from '../views/EntregaMateriais'
+import SolicitacaoMateriais from '../views/SolicitaçãoMateriais'
 
 const routes = [
+  //Home
   {
     path: '/',
     name: 'home',
@@ -32,8 +37,6 @@ const routes = [
   },
 
 
-
-
   //Categoria
   {
     path: '/categoria/novo',
@@ -42,9 +45,7 @@ const routes = [
   },
 
 
-
  //Corrente
-
   {
     path: '/orcamento/corrente',
     name: 'AddOrçamentoCorrente',
@@ -59,11 +60,11 @@ const routes = [
   {
     path: '/correntes',
     name: 'Correntes',
-    component: CorrentesView
+    component: CorrenteLista
   },
 
-  //Projeto
 
+  //Projeto
   {
     path: '/orcamento/projeto',
     name: 'AddOrçamentoProjeto',
@@ -82,6 +83,23 @@ const routes = [
   },
 
 
+  //Materiais
+  {
+    path: '/materiais/solicitacao',
+    name: 'SolicitacaoMateriais',
+    component: SolicitacaoMateriais
+  },
+
+  {
+    path: '/materiais/entrega',
+    name: 'EntregaMateriais',
+    component: EntregaMateriais
+  },
+  {
+    path: '/materiais/aprovacao',
+    name: 'AprovacaoMateriais',
+    component: AprovacaoMateriais
+  },
 
 
 ]
