@@ -1,17 +1,22 @@
 <template>
     <nav>
         <router-link to="/">Home</router-link> |
-        <router-link to="/corrente/novo">Add Corrente</router-link> |
-        <router-link to="/orcamento/corrente">Add Orçamento Corrente</router-link> |
-        <router-link to="/correntes">Correntes</router-link> |
-        <router-link to="/categoria/novo">Add Categoria</router-link> |
-        <router-link to="/projeto/novo">Add Projeto</router-link> |
-        <router-link to="/orcamento/projeto">Add Despesa Projetos</router-link> |
+        
+        <router-link to="/area/novo">Cadastro Area</router-link> |
+        <router-link to="/area/selecionar">Selecionar Area</router-link> |
+
+        <router-link to="/planejamento">Planejamento Orçamento</router-link> |
+        <router-link to="/planejamento/projeto">Planejamento Projeto</router-link> |
+        <router-link to="/planejamento/corrente">Planejamento Corrente</router-link> |
+
+
+    
+        <router-link to="/orcamento/area">Orçamento por Área</router-link> |
         <router-link to="/projetos">Projetos</router-link> |
         <router-link to="/materiais/solicitacao">Solicitação Material</router-link> |
         <router-link to="/materiais/entrega">Entrega Material</router-link> |
         <router-link to="/materiais/aprovacao">Aprovação Material</router-link> |
-
+    
     
     </nav>
     
@@ -54,10 +59,10 @@ export default {
     --menu-lateral-background: #333;
     --menu-lateral-botao: #444;
     --menu-lateral-borda: #555;
+    --aprovar: #429867;
+    --revisar: #f2c94e;
+    --reprovar: #e02130;
 }
-
-
-
 
 .router {
     margin-bottom: 100px;

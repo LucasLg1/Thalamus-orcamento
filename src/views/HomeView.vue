@@ -1,7 +1,7 @@
 <template>
     <div class="colored-theme">
         <br> <br> <br>
-        <h4>Thalamus Orçamentos&nbsp;&nbsp;<i class="fa-solid fa-piggy-bank"></i></h4>
+        <h4>ERP Orçamentos&nbsp;&nbsp;<i class="fa-solid fa-piggy-bank"></i></h4>
     
         <div class="buttons">
             <button class="btn-primary" @click="toggleExpenses('current')">

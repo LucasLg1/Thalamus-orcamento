@@ -4,30 +4,52 @@
         <div class="row">
            
             <div class="col-sm-12" style="text-align: center;">
-                <h3><i class="fa-solid fa-list"></i></h3>
-                <h3 class="titulo">Listar Projetos</h3>
+                <h3><i class="fa-solid fa-diagram-project"></i></h3>
+                <h3 class="titulo"> Projetos</h3>
                 <br><br>
     
-                <BButton>Button</BButton>
-                <BButton variant="danger">Button</BButton>
-                <BButton variant="success">Button</BButton>
-                <BButton variant="outline-primary">Button</BButton>
+                
     
             </div>
         </div>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr style="text-align: center;">
                         <th scope="col">Nome</th>
-    
-                        <th scope="col">Ações</th>
+                        <th scope="col">Valor Utilizado</th>
+                        <th scope="col">Valor Estimado</th>
+                        <th scope="col"></th>
+
     
                     </tr>
                 </thead>
                 <tbody style="text-align: center;">
+                    <td>Projeto 1</td>
+                    <td></td>
+                    <td></td> 
+                     <td><button type="button" v-b-tooltip.hover.top title="Informação Projeto">
+                            <i class="fa-solid fa-circle-info"></i>&nbsp; 
+                                              </button> 
+                                            </td>
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td>Projeto 2</td>
                     <td></td>
                     <td></td>
+                    <td><button type="button" v-b-tooltip.hover.top title="Informação Projeto">
+                            <i class="fa-solid fa-circle-info"></i>&nbsp; 
+                                              </button> </td>
+            
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td>Projeto 3</td>
+                    <td></td>
+                    <td></td>
+                    <td><button type="button" v-b-tooltip.hover.top title="Informação Projeto">
+                            <i class="fa-solid fa-circle-info"></i>&nbsp; 
+                                              </button> </td>
+            
                 </tbody>
             </table>
         </div>

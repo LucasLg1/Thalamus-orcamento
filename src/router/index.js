@@ -2,19 +2,20 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 //Home
 import HomeView from '../views/HomeView.vue'
-import Home2View from '../views/Home2View.vue'
 
-//Corrente
-import AddOrçamentoCorrente from '../views/AddOrçamentoCorrente'
-import AddCorrente from '../views/AddCorrente'
-import CorrenteLista from '../views/CorrentesLista'
+//Area
+import CadastroArea from '../views/CadastroArea.vue'
+import SelecionarArea from '../views/SelecionarArea.vue'
 
-//Categoria
-import AddCategoria from '../views/AddCategoria'
+//Planejamento
+import PlanejamentoOrçamento from '../views/PlanejamentoOrçamento'
+import PlanejamentoProjeto from '../views/PlanejamentoProjeto'
+import PlanejamentoCorrente from '../views/PlanejamentoCorrente'
+
+//Orçamento
+import OrcamentoPorArea from '../views/OrçamentoPorArea'
 
 //Projeto
-import AddOrçamentoProjeto from '../views/AddOrçamentoProjeto'
-import AddProjeto from '../views/AddProjeto'
 import ProjetosView from '../views/ProjetosView'
 
 //Materiais
@@ -30,52 +31,48 @@ const routes = [
     component: HomeView
   },
 
+  //Area
   {
-    path: '/2',
-    name: 'home2',
-    component: Home2View
+    path: '/area/novo',
+    name: 'CadastroArea',
+    component: CadastroArea
+  },
+  {
+    path: '/area/selecionar',
+    name: 'SelecionarArea',
+    component: SelecionarArea
+  },
+
+  //Planejamento
+  {
+    path: '/planejamento',
+    name: 'PlanejamentoOrcamento',
+    component: PlanejamentoOrçamento
+  },
+  {
+    path: '/planejamento/projeto',
+    name: 'PlanejamentoProjeto',
+    component: PlanejamentoProjeto
+  },
+  {
+    path: '/planejamento/corrente',
+    name: 'PlanejamentoCorrente',
+    component: PlanejamentoCorrente
   },
 
 
-  //Categoria
-  {
-    path: '/categoria/novo',
-    name: 'AddCategoria',
-    component: AddCategoria
-  },
 
-
- //Corrente
-  {
-    path: '/orcamento/corrente',
-    name: 'AddOrçamentoCorrente',
-    component: AddOrçamentoCorrente
-  },
-  {
-    path: '/corrente/novo',
-    name: 'AddCorrente',
-    component: AddCorrente
-  },
+  //Orçamento
 
   {
-    path: '/correntes',
-    name: 'Correntes',
-    component: CorrenteLista
+    path: '/orcamento/area',
+    name: 'OrcamentoArea',
+    component: OrcamentoPorArea
   },
 
 
   //Projeto
-  {
-    path: '/orcamento/projeto',
-    name: 'AddOrçamentoProjeto',
-    component: AddOrçamentoProjeto
-  },
 
-  {
-    path: '/projeto/novo',
-    name: 'AddProjeto',
-    component: AddProjeto
-  },
   {
     path: '/projetos',
     name: 'Projetos',
