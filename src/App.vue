@@ -1,17 +1,20 @@
 <template>
     <nav>
         <router-link to="/">Home</router-link> |
-        
+    
         <router-link to="/area/novo">Cadastro Area</router-link> |
         <router-link to="/area/selecionar">Selecionar Area</router-link> |
-
+    
         <router-link to="/planejamento">Planejamento Orçamento</router-link> |
         <router-link to="/planejamento/projeto">Planejamento Projeto</router-link> |
         <router-link to="/planejamento/corrente">Planejamento Corrente</router-link> |
-
-
     
         <router-link to="/orcamento/area">Orçamento por Área</router-link> |
+        <router-link to="/orcamento/mensal">Orçamento Mensal</router-link> |
+
+
+
+
         <router-link to="/projetos">Projetos</router-link> |
         <router-link to="/materiais/solicitacao">Solicitação Material</router-link> |
         <router-link to="/materiais/entrega">Entrega Material</router-link> |

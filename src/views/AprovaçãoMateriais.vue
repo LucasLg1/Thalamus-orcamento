@@ -25,32 +25,34 @@
     
                     </td>
                     <td>
-                        <div>
-                            <button type="button" class="button-aprovar" @click="abrirModal(item)" >
-                                    <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
-                                            </button>&nbsp;
-                            <button type="button" class="button-revisar" @click="abrirModal(item)" >
-                                               <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
-                                            </button>&nbsp;
-                            <button type="button" class="button-reprovar" @click="abrirModal(item)" >
-                                                <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
-                                            </button>
-                        </div>
+                       
+                            <button type="button" class="button-aprovar" @click="abrirModal(item)">
+                                            <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
+                                                    </button>&nbsp;
+    
+                            <button type="button" class="button-reprovar" @click="abrirModal(item)">
+                                                        <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
+                                                    </button>&nbsp;
+                            <button type="button" class="button-revisar" @click="abrirModal(item)">
+                                                       <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
+                                                    </button>&nbsp;
+                        
                     </td>
                 </tbody>
                 <tbody style="text-align: center;">
                     <td></td>
                     <td> Caneta </td>
                     <td>
-                        <button type="button" class="button-aprovar"  >
-                                    <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
-                                            </button>&nbsp;
-                            <button type="button" class="button-revisar"  >
-                                               <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
-                                            </button>&nbsp;
-                            <button type="button" class="button-reprovar" >
-                                                <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
-                                            </button>
+                        <button type="button" class="button-aprovar" @click="abrirModal(item)">
+                                            <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
+                                                    </button>&nbsp;
+    
+                            <button type="button" class="button-reprovar" @click="abrirModal(item)">
+                                                        <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
+                                                    </button>&nbsp;
+                            <button type="button" class="button-revisar" @click="abrirModal(item)">
+                                                       <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
+                                                    </button>&nbsp;
                     </td>
                 </tbody>
                 <tbody style="text-align: center;">
@@ -61,15 +63,16 @@
                     </td>
                     <td>
     
-                        <button type="button" class="button-aprovar"  >
-                                    <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
-                                            </button>&nbsp;
-                            <button type="button" class="button-revisar" >
-                                               <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
-                                            </button>&nbsp;
-                            <button type="button" class="button-reprovar" >
-                                                <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
-                                            </button>
+                        <button type="button" class="button-aprovar" @click="abrirModal(item)">
+                                            <i class="fa-solid fa-thumbs-up"></i>&nbsp; Aprovar
+                                                    </button>&nbsp;
+    
+                            <button type="button" class="button-reprovar" @click="abrirModal(item)">
+                                                        <i class="fa-solid fa-thumbs-down"></i>&nbsp; Reprovar
+                                                    </button>&nbsp;
+                            <button type="button" class="button-revisar" @click="abrirModal(item)">
+                                                       <i class="fa-solid fa-pen-to-square"></i>&nbsp; Revisar
+                                                    </button>&nbsp;
                     </td>
                 </tbody>
             </table>
@@ -78,10 +81,10 @@
     
         <div class="col-sm-12 text-center">
             <button class="button-default" value="Entrar">
-                        <i v-if="loading" class="fas fa-spinner fa-spin"></i> &nbsp;
-                                                          <span v-if="!loading">Salvar</span>
-                                                          <span v-if="loading">Salvando...</span>
-                                                        </button>
+                                <i v-if="loading" class="fas fa-spinner fa-spin"></i> &nbsp;
+                                                                  <span v-if="!loading">Salvar</span>
+                                                                  <span v-if="loading">Salvando...</span>
+                                                                </button>
     
         </div>
     
@@ -104,7 +107,6 @@
     cursor: pointer;
 }
 
-
 .button-reprovar {
     width: 15%;
     background-color: var(--reprovar) !important;
@@ -115,7 +117,6 @@
     border-radius: 6px !important;
     cursor: pointer;
 }
-
 
 .button-aprovar {
     width: 15%;

@@ -10,8 +10,8 @@
             <div class="input-group mt-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
-                                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                                </span>
+                                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                                    </span>
                 </div>
                 <input v-model="filtroNome" @input="pesquisaComFiltro" type="text" placeholder="Pesquisar material" class="form-control" />
             </div>
@@ -29,12 +29,14 @@
                 <tbody style="text-align: center;">
                     <td><input type="checkbox"></td>
                     <td>
-                         Caderno
+                        Caderno
     
                     </td>
-                    <td><div style="width: min-content; " v-b-tooltip.hover.top title="Produto não disponível em estoque">
+                    <td>
+                        <div style="width: min-content; " v-b-tooltip.hover.top title="Produto não disponível em estoque">
                             <i style="color: red" class="fa-solid fa-circle-exclamation"></i>
-                        </div></td>
+                        </div>
+                    </td>
                 </tbody>
                 <tbody style="text-align: center;">
                     <td><input type="checkbox"></td>
@@ -45,21 +47,23 @@
                     <td><input type="checkbox"></td>
                     <td>
     
-                       Lápis
+                        Lápis
                     </td>
-                    <td><div style="width: min-content; " v-b-tooltip.hover.top title="Produto não disponível em estoque">
+                    <td>
+                        <div style="width: min-content; " v-b-tooltip.hover.top title="Produto não disponível em estoque">
                             <i style="color: red" class="fa-solid fa-circle-exclamation"></i>
-                        </div></td>
+                        </div>
+                    </td>
                 </tbody>
             </table>
         </div>
         <div class="col-sm-14
-                                                     text-center">
+                                                         text-center">
             <button class="button-default" value="Entrar">
-                                                    <i v-if="loading" class="fas fa-spinner fa-spin"></i> &nbsp;
-                                                                                      <span v-if="!loading">Solicitar</span>
-                                                                                      <span v-if="loading">Aguarde...</span>
-                </button>
+                                                        <i v-if="loading" class="fas fa-spinner fa-spin"></i> &nbsp;
+                                                                                          <span v-if="!loading">Solicitar</span>
+                                                                                          <span v-if="loading">Aguarde...</span>
+                    </button>
         </div>
     </div>
 </template>

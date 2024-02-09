@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-2">
                 <button type="button" class="button-cadastrar" @click="adicionarPessoa">
-                                            <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Cadastrar</button>
+                                                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Cadastrar</button>
             </div>
     
         </div>
@@ -30,53 +30,53 @@
                     <td>
     
                         <button type="button" v-b-tooltip.hover.top title="Projetos">
-                                        <i class="fa-solid fa-diagram-project"></i>&nbsp; 
-                                              </button> &nbsp; | &nbsp;
+                                            <i class="fa-solid fa-diagram-project"></i>&nbsp; 
+                                                  </button> &nbsp; | &nbsp;
     
                         <button type="button" v-b-tooltip.hover.top title="Corrente">
-                                 <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
-                                                            </button> | &nbsp;
+                                     <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
+                                                                </button> | &nbsp;
                         <button type="button" v-b-tooltip.hover.top title="Editar">
-                                                <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
-                                                            </button>
-        </td>
-        </tbody>
-        <tbody style="text-align: center;">
-            <td> 2023 </td>
-            <td>
-                    <button type="button" v-b-tooltip.hover.top title="Projetos">
-                                        <i class="fa-solid fa-diagram-project"></i>&nbsp; 
-                                              </button> &nbsp; | &nbsp;
+                                                    <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
+                                                                </button>
+                    </td>
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td> 2023 </td>
+                    <td>
+                        <button type="button" v-b-tooltip.hover.top title="Projetos">
+                                            <i class="fa-solid fa-diagram-project"></i>&nbsp; 
+                                                  </button> &nbsp; | &nbsp;
     
                         <button type="button" v-b-tooltip.hover.top title="Corrente">
-                                 <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
-                                                            </button> | &nbsp;
+                                     <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
+                                                                </button> | &nbsp;
                         <button type="button" v-b-tooltip.hover.top title="Editar">
-                                                <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
-                                                            </button>
-            </td>
-        </tbody>
-        <tbody style="text-align: center;">
-            <td>
+                                                    <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
+                                                                </button>
+                    </td>
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td>
     
-                2024
-            </td>
-            <td>
-                <button type="button" v-b-tooltip.hover.top title="Projetos">
-                                        <i class="fa-solid fa-diagram-project"></i>&nbsp; 
-                                              </button> &nbsp; | &nbsp;
+                        2024
+                    </td>
+                    <td>
+                        <button type="button" v-b-tooltip.hover.top title="Projetos">
+                                            <i class="fa-solid fa-diagram-project"></i>&nbsp; 
+                                                  </button> &nbsp; | &nbsp;
     
                         <button type="button" v-b-tooltip.hover.top title="Corrente">
-                                 <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
-                                                            </button> | &nbsp;
+                                     <i class="fa-solid fa-money-bill-trend-up"></i>&nbsp; 
+                                                                </button> | &nbsp;
                         <button type="button" v-b-tooltip.hover.top title="Editar">
-                                                <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
-                                                            </button>
-            </td>
-        </tbody>
-        </table>
-    </div>
-    <br><br>
+                                                    <i class="fa-solid fa-pen-to-square"></i>&nbsp; 
+                                                                </button>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
     
     
     

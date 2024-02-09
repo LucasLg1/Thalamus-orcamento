@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-2">
                 <button type="button" class="button-cadastrar" @click="adicionarPessoa">
-                                            <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Cadastrar</button>
+                                                <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Cadastrar</button>
             </div>
     
         </div>
@@ -30,35 +30,35 @@
                     <td>
     
                         <button type="button" v-b-tooltip.hover.top title="Informação Projeto">
+                                <i class="fa-solid fa-circle-info"></i>&nbsp; 
+                                                  </button>
+                    </td>
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td> P2 </td>
+                    <td>
+                        <button type="button" v-b-tooltip.hover.top title="Informação Projeto">
                             <i class="fa-solid fa-circle-info"></i>&nbsp; 
-                                              </button> 
-                                            </td>
-        </tbody>
-        <tbody style="text-align: center;">
-            <td> P2 </td>
-            <td>
-                <button type="button" v-b-tooltip.hover.top title="Informação Projeto">
+                                                  </button>
+    
+                    </td>
+                </tbody>
+                <tbody style="text-align: center;">
+                    <td>
+    
+                        P3
+                    </td>
+                    <td>
+                        <button type="button" v-b-tooltip.hover.top title="Informação Projeto">
                         <i class="fa-solid fa-circle-info"></i>&nbsp; 
-                                              </button> 
-                        
-            </td>
-        </tbody>
-        <tbody style="text-align: center;">
-            <td>
+                                                  </button>
     
-                P3
-            </td>
-            <td>
-                <button type="button" v-b-tooltip.hover.top title="Informação Projeto">
-                    <i class="fa-solid fa-circle-info"></i>&nbsp; 
-                                              </button> 
     
-                      
-            </td>
-        </tbody>
-        </table>
-    </div>
-    <br><br>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
     
     
     

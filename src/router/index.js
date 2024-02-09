@@ -14,6 +14,8 @@ import PlanejamentoCorrente from '../views/PlanejamentoCorrente'
 
 //Orçamento
 import OrcamentoPorArea from '../views/OrçamentoPorArea'
+import OrcamentoPorMes from '../views/DefinirOrçamentoMensal'
+
 
 //Projeto
 import ProjetosView from '../views/ProjetosView'
@@ -70,6 +72,11 @@ const routes = [
     component: OrcamentoPorArea
   },
 
+  {
+    path: '/orcamento/mensal',
+    name: 'OrcamentoMes',
+    component: OrcamentoPorMes
+  },
 
   //Projeto
 

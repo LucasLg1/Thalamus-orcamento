@@ -8,7 +8,7 @@
                     <legend>Selecione uma área &nbsp;<i class="fa-solid fa-arrow-pointer"></i></legend>
     
                     <div>
-                        <input type="radio" id="huey" name="drone" value="huey"  />
+                        <input type="radio" id="huey" name="drone" value="huey" />
                         <label for="huey">&nbsp;Informática</label>
                     </div>
     
@@ -42,7 +42,6 @@
 
 <style>
 input {
-  margin: 0.4rem;
+    margin: 0.4rem;
 }
-
 </style>
