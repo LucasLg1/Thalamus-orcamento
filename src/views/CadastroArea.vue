@@ -9,7 +9,7 @@
                 <br><br>
             </div>
             <div class="col-sm-2">
-                <button type="button" class="button-cadastrar" @click="adicionarPessoa">
+                <button type="button" class="button-cadastrar" @click="this.modalArea = !this.modalArea">
                     <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Cadastrar</button>
             </div>
 
@@ -75,9 +75,10 @@
 
 
     </div>
+    <!-- modal -->
     <div class="modal-mask" v-if="modalArea" @click="fecharModalFora">
-        <div class="modal-container">
-            <div style="padding-inline: 3rem;">
+        <div class="container-modal" style="width: 60%; margin-bottom: 1rem;">
+            <div style="padding-inline: 3rem; margin-top: none; height: min-content;">
                 <div class="tituloModal">
                     <h1>Adicionar Área</h1>
                 </div>
@@ -93,14 +94,14 @@
 
                 <div class="divBotoes">
 
-                    <button class="botaoSalvar">Salvar</button>
-                    <button class="botaoCancelar">Cancelar</button>
+                    <button class="botaoSalvar" @click="modalArea = !modalArea">Salvar</button>
 
                 </div>
 
             </div>
         </div>
     </div>
+    <!-- end modal -->
 </template>
 
 <script>
@@ -118,20 +119,11 @@ export default {
             }
 
         },
-        showModalAddArea() {
-            this.modalArea = !this.modalArea
-        }
     }
 }
 </script>
 
 <style>
-.botaoCancelar {
-    background-color: #FFFFFF;
-    color: black;
-    width: 7rem;
-    height: 2rem;
-}
 
 .botaoSalvar {
     background-color: #343537;
@@ -144,7 +136,7 @@ export default {
 .divBotoes {
     display: flex;
     width: 100%;
-    align-items: center;
+    align-items: flex-end;
     flex-flow: column;
     margin-top: 2rem;
 }
@@ -194,19 +186,20 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* height: 40rem; */
     background-color: rgba(0, 0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.modal-container {
+.container-modal {
+    padding-inline: 3rem;
     background-color: #F6F6F6;
     border: 1px solid black;
-    width: 40rem;
+    width: 10rem;
     height: 30rem;
     overflow-y: auto;
     position: relative;
-    margin-bottom: 3rem;
+    padding: 0,01rem;
 }</style>

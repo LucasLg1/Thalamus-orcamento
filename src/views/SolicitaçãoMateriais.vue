@@ -35,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in listaSolicitacao" :key="item.nome" style="text-align: left;"
+                    <tr v-for="item in listaSolicitacao[0].itens" :key="item.nome" style="text-align: left;"
                         @mouseover="mostrarBotao(item.id, true)" @mouseleave="mostrarBotao(item.id, false)">
                         <td style="width: min-content"><input type="number" v-model="item.quantidade"
                                 style="width: 100%; text-align: center;"></td>
@@ -94,7 +94,7 @@
 <script>
 export default {
     data() {
-        return { 
+        return {
             showModal: false,
             teste: null,
             novoItem: 'Pesquisar material',
@@ -108,10 +108,15 @@ export default {
                 { id: 6, nome: 'Caneta', estoque: true, medida: 'un.', quantidade: 5 },
             ],
 
-            listaSolicitacao: [
-                { id: 0, nome: 'Caderno', estoque: true, medida: 'un.', quantidade: 1 },
-                { id: 1, nome: 'Lápis', estoque: false, medida: 'un.', quantidade: 5 },
-                { id: 2, nome: 'Caneta', estoque: true, medida: 'un.', quantidade: 5 },
+            listaSolicitacao: [{
+                id: 0,
+                nome: 'solicitação 1', 
+                itens: [
+                    { id: 0, nome: 'Caderno', estoque: true, medida: 'un.', quantidade: 1 },
+                    { id: 1, nome: 'Lápis', estoque: false, medida: 'un.', quantidade: 5 },
+                    { id: 2, nome: 'Caneta', estoque: true, medida: 'un.', quantidade: 5 },
+                ]
+            }
             ]
         }
     },
@@ -134,7 +139,7 @@ export default {
 
         adicionarItem() {
             this.novoItem.id = this.listaSolicitacao.length
-            this.listaSolicitacao.push(this.novoItem);
+            this.listaSolicitacao[0].itens.push(this.novoItem);
 
             this.novoItem = 'Pesquisar material'
         },
