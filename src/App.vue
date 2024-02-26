@@ -1,32 +1,23 @@
 <template>
-    <nav>
-        <router-link to="/">Home</router-link> |
+    <div class="estilos">
     
-        <router-link to="/area/novo">Cadastro Area</router-link> |
-        <router-link to="/area/selecionar">Selecionar Area</router-link> |
+        <nav>
+            <router-link to="/">Home</router-link> |
+            <router-link to="/area/novo">Cadastro Area</router-link> |
+            <router-link to="/orcamento/area">Orçamento por Área</router-link> |
+            <router-link to="/orcamento/mensal">Orçamento Mensal</router-link>
     
-        <router-link to="/planejamento">Planejamento Orçamento</router-link> |
-        <router-link to="/planejamento/projeto">Planejamento Projeto</router-link> |
-        <router-link to="/planejamento/corrente">Planejamento Corrente</router-link> |
+            <!-- <router-link to="/materiais/solicitacao">Solicitação Material</router-link> |
+                    <router-link to="/materiais/entrega">Entrega Material</router-link> |
+                    <router-link to="/materiais/aprovacao">Aprovação Material</router-link> |
+                 -->
+        </nav>
     
-        <router-link to="/orcamento/area">Orçamento por Área</router-link> |
-        <router-link to="/orcamento/mensal">Orçamento Mensal</router-link> |
-
-
-
-
-        <router-link to="/projetos">Projetos</router-link> |
-        <router-link to="/materiais/solicitacao">Solicitação Material</router-link> |
-        <router-link to="/materiais/entrega">Entrega Material</router-link> |
-        <router-link to="/materiais/aprovacao">Aprovação Material</router-link> |
-    
-    
-    </nav>
-    
-    <div class="router">
         <br><br><br>
     
-        <router-view/>
+        <div class="router">
+            <router-view/>
+        </div>
     
     </div>
     <FooterComponent></FooterComponent>
@@ -69,6 +60,7 @@ export default {
 
 .router {
     margin-bottom: 100px;
+    margin-top: 0px;
 }
 
 nav {

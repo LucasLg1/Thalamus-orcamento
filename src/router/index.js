@@ -4,26 +4,17 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 //Area
-import CadastroArea from '../views/CadastroArea.vue'
-import SelecionarArea from '../views/SelecionarArea.vue'
-
-//Planejamento
-import PlanejamentoOrçamento from '../views/PlanejamentoOrçamento'
-import PlanejamentoProjeto from '../views/PlanejamentoProjeto'
-import PlanejamentoCorrente from '../views/PlanejamentoCorrente'
+import GerenciamentoDeArea from '../views/Orçamentos/GerenciamentoDeArea.vue'
 
 //Orçamento
-import OrcamentoPorArea from '../views/OrçamentoPorArea'
-import OrcamentoPorMes from '../views/DefinirOrçamentoMensal'
+import OrcamentoPorArea from '../views/Orçamentos/OrçamentoPorArea'
+import OrcamentoPorMes from '../views/Orçamentos/DefinirOrçamentoMensal'
 
-
-//Projeto
-import ProjetosView from '../views/ProjetosView'
 
 //Materiais
-import AprovacaoMateriais from '../views/AprovaçãoMateriais'
-import EntregaMateriais from '../views/EntregaMateriais'
-import SolicitacaoMateriais from '../views/SolicitaçãoMateriais'
+import AprovacaoMateriais from '../views/Compras/AprovaçãoMateriais'
+import EntregaMateriais from '../views/Compras/EntregaMateriais'
+import SolicitacaoMateriais from '../views/Compras/SolicitaçãoMateriais'
 
 const routes = [
   //Home
@@ -36,31 +27,10 @@ const routes = [
   //Area
   {
     path: '/area/novo',
-    name: 'CadastroArea',
-    component: CadastroArea
-  },
-  {
-    path: '/area/selecionar',
-    name: 'SelecionarArea',
-    component: SelecionarArea
+    name: 'GerenciamentoDeArea',
+    component: GerenciamentoDeArea
   },
 
-  //Planejamento
-  {
-    path: '/planejamento',
-    name: 'PlanejamentoOrcamento',
-    component: PlanejamentoOrçamento
-  },
-  {
-    path: '/planejamento/projeto',
-    name: 'PlanejamentoProjeto',
-    component: PlanejamentoProjeto
-  },
-  {
-    path: '/planejamento/corrente',
-    name: 'PlanejamentoCorrente',
-    component: PlanejamentoCorrente
-  },
 
 
 
@@ -76,14 +46,6 @@ const routes = [
     path: '/orcamento/mensal',
     name: 'OrcamentoMes',
     component: OrcamentoPorMes
-  },
-
-  //Projeto
-
-  {
-    path: '/projetos',
-    name: 'Projetos',
-    component: ProjetosView
   },
 
 
