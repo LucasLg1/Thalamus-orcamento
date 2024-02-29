@@ -3,7 +3,7 @@
     
         <nav>
             <router-link to="/">Home</router-link> |
-            <router-link to="/area/novo">Cadastro Area</router-link> |
+            <router-link to="/area/novo">Gerenciamento</router-link> |
             <router-link to="/orcamento/area">Orçamento por Área</router-link> |
             <router-link to="/orcamento/mensal">Orçamento Mensal</router-link>
     
@@ -15,9 +15,7 @@
     
         <br><br><br>
     
-        <div class="router">
             <router-view/>
-        </div>
     
     </div>
     <FooterComponent></FooterComponent>
@@ -56,6 +54,11 @@ export default {
     --aprovar: #429867;
     --revisar: #f2c94e;
     --reprovar: #e02130;
+}
+
+.estilos{
+    font-family: 'montserrat', sans-serif;
+    background-color: #FAF9F6; height: 2000px;
 }
 
 .router {

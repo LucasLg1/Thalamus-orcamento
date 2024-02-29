@@ -4,7 +4,11 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 //Area
-import GerenciamentoDeArea from '../views/Orçamentos/GerenciamentoDeArea.vue'
+import GerenciamentoDeDespesa from '../views/Orçamentos/GerenciamentoDeDespesa.vue'
+
+//Projeto
+import GerenciamentoDeProjeto from '../views/Orçamentos/GerenciamentoDeProjeto.vue'
+
 
 //Orçamento
 import OrcamentoPorArea from '../views/Orçamentos/OrçamentoPorArea'
@@ -27,11 +31,16 @@ const routes = [
   //Area
   {
     path: '/area/novo',
-    name: 'GerenciamentoDeArea',
-    component: GerenciamentoDeArea
+    name: 'GerenciamentoDeDespesa',
+    component: GerenciamentoDeDespesa
   },
 
-
+  //Projeto
+  {
+    path: '/projeto/novo',
+    name: 'GerenciamentoDeProjeto',
+    component: GerenciamentoDeProjeto
+  },
 
 
   //Orçamento
