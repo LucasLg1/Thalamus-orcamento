@@ -10,13 +10,13 @@
                 <div class="col-sm-12">
                     <label>Selecione uma Área: </label>
                     <select class="form-select combo" v-model="grupoSelecionado" @change="handleGrupoSelecionadoChange">
-                                             <option value="" disabled> Selecione </option>
-                                              <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.id">{{ item.nome }}</option></select>
+                                                 <option value="" disabled> Selecione </option>
+                                                  <option v-for="item in gruposDisponiveis" :key="item.id" :value="item.id">{{ item.nome }}</option></select>
                 </div>
                 <br><br>
             </div>
     
-            
+    
             <div class="col-sm-12">
                 <div class="squareDisponivel">
                     <h5>Orçamento Disponível</h5>
@@ -24,7 +24,7 @@
                     <!-- <p>{{ SEU_VALOR_DISPONIVEL }}</p> -->
                 </div>
             </div>
-            
+    
         </div>
         <br>
         <div class="table-responsive">
@@ -61,8 +61,8 @@
                     <td></td>
                     <td></td>
                 </tbody>
-              
-               
+    
+    
             </table>
         </div>
     </div>

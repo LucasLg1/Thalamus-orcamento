@@ -15,55 +15,57 @@
     
         <div class="row">
     
-        
     
-       
-            
-            <div class="col-sm-12" style="border: 1px solid grey; border-radius: 10px; margin-top: 20px; background-color: white;">
+    
+    
+    
+            <div class="col-sm-12" style="text-align: center; border: 1px solid grey; border-radius: 10px; margin-top: 20px; background-color: white;">
                 <br>
                 <h5 class="table-title">Projetos</h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                                                                                                                                                                                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                                                                                                                            </span>
                     </div>
                     <input v-model="filtroProjeto" @input="pesquisaProjeto" type="text" class="form-control" placeholder="Pesquisar projeto" />&nbsp;&nbsp;
     
     
                 </div>
                 <br>
-                <div class="table-responsive">
+                <label >Escolha um projeto para visualizar</label>
+
+                <div class="table-responsive" >
                     <table class="table table-hover">
                         <thead>
                             <tr style="text-align: center;">
                                 <th scope="col">Nome</th>
                             </tr>
                         </thead>
-                        <tbody style="text-align: center;">
+                        <tbody style="text-align: center; cursor: pointer;">
                             <tr v-for="(projetos, index) in mockupData.projetos" :key="index">
                                 <td>{{ projetos.nome }}</td>
-                                
+    
                             </tr>
     
                         </tbody>
                     </table>
                     <nav>
                         <!-- <ul class="pagination">
-                                                                                                            <li class="page-item" :class="{disabled: currentPage === 0}">
-                                                                                                                <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                                                                                                                                                                                          <span aria-hidden="true">&laquo;</span>
-                                                                                                                                                                                        </a>
-                                                                                                            </li>
-                                                                                                            <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
-                                                                                                                <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
-                                                                                                            </li>
-                                                                                                            <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
-                                                                                                                <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                                                                                                                                                                                          <span aria-hidden="true">&raquo;</span>
-                                                                                                                                                                                        </a>
-                                                                                                            </li>
-                                                                                                        </ul> -->
+                                                                                                                <li class="page-item" :class="{disabled: currentPage === 0}">
+                                                                                                                    <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
+                                                                                                                                                                                              <span aria-hidden="true">&laquo;</span>
+                                                                                                                                                                                            </a>
+                                                                                                                </li>
+                                                                                                                <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
+                                                                                                                    <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
+                                                                                                                </li>
+                                                                                                                <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
+                                                                                                                    <a class="page-link" href="#" aria-label="Next" @click="nextPage">
+                                                                                                                                                                                              <span aria-hidden="true">&raquo;</span>
+                                                                                                                                                                                            </a>
+                                                                                                                </li>
+                                                                                                            </ul> -->
                     </nav>
                 </div>
             </div>
@@ -81,11 +83,11 @@
     
     
                 <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                                                   
-                                                                                                                                                                                                      <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                                                      <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                                                        
-                                                                                                                                                                                                    </button>
+                                                                                                                                                                                                       
+                                                                                                                                                                                                          <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
+                                                                                                                                                                                                          <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
+                                                                                                                                                            
+                                                                                                                                                                                                        </button>
     
                 <input type="text" v-if="mostrarInput">
                 <br>
@@ -94,7 +96,7 @@
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr style="text-align: center;">
+                            <tr style="text-align: center; ">
                                 <th scope="col">Área</th>
                                 <th scope="col"></th>
                             </tr>
@@ -138,21 +140,7 @@
 
 <script>
 const mockupData = {
-    areas: [
-        { nome: 'Informática' },
-        { nome: 'Marketing' },
-        { nome: 'Financeiro' },
-    ],
-    categorias: [
-        { nome: 'Impressora' },
-        { nome: 'Software' },
-        { nome: 'Notebook' },
-    ],
-    responsaveis: [
-        { nome: 'Coordenador Facilities' },
-        { nome: 'Diretoria Geral' },
-        { nome: 'Supervisor de Produção' },
-    ],
+
     projetos: [
         { nome: 'Thalamus - Orçamentos / Compras' },
         { nome: 'Thalamus - Catraca' },
@@ -166,9 +154,8 @@ export default {
         return {
             modalArea: false,
             mostrarInput: false,
-            filtroCategoria: '',
-            filtroDespesa: '',
             mockupData,
+            filtroProjeto: ''
 
 
         }

@@ -7,78 +7,60 @@
             </nav>
             <div class="col-sm-12" style="text-align: center;">
                 <h3 class="titulo"> Thalamus Orçamentos </h3>
-                <br><br>
+                <br /><br />
             </div>
         </div>
-        <br>
+        <br />
     
-    
+        <!-- COLUNA 1 -->
         <div class="row text-center">
-    
-            <div class="col-sm-5" style="background-color: white; border: 1px solid grey; border-radius: 10px; padding: 1rem; margin-right: 150px;" >
-                <br>
-                <h5 class="table-title">Orçamento de Despesas Correntes</h5>
+            <div class="col-sm-5" style="background-color: white; border: 1px solid grey; border-radius: 10px; padding: 1rem; margin-right: 150px;">
+                <br />
+                <h5 class="table-title"> Despesas Correntes</h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                                </span>
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
+                                                ></span>
                     </div>
                     <input v-model="filtroDespesa" @input="pesquisaDespesa" type="text" class="form-control" placeholder="Pesquisar despesas" />&nbsp;&nbsp;
                 </div>
-                <br>
-    
+                <br />
+                <label>Escolha uma área, para visualizar as categorias</label>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
-                            <tr style="text-align: center;">
+                            <tr style="text-align: center; ">
                                 <th scope="col">Área</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody style="text-align: center;">
-                            <tr v-for="(area, index) in mockupData.areas" :key="index">
+                        <tbody style="text-align: center; cursor: pointer;">
+                            <tr v-for="(area, index) in mockupData.areas" :key="index" @click="carregarCategorias(area)">
                                 <td>{{ area.nome }}</td>
                                 <td>
                                     <div>
-                                        <i title="Clique para vincular responsável" class="fa-solid fa-users" @click="modalArea = !modalArea"></i>&nbsp;
+                                        <i title="Clique para vincular responsável" class="fa-solid fa-user-group" @click="modalArea = !modalArea"></i> &nbsp;
                                     </div>
                                 </td>
                             </tr>
-    
                         </tbody>
                     </table>
-                    <!-- <nav>
-                                                                                                            <ul class="pagination">
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === 0}">
-                                           </li>
-                                                                                                                <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
-                               <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
-                                                                                                                </li>
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
-                                                                                                                    <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                                                                                                                                                                                              <span aria-hidden="true">&raquo;</span>
-                                                                                                                                                                                            </a>
-                                                                                                                </li>
-                                                                                                            </ul>
-                                                                                                        </nav> -->
                 </div>
             </div>
+            <!--END COLUNA 1-->
     
+            <!-- COLUNA 2-->
             <div class="col-sm-5" style="border: 1px solid grey;  background-color: white; border-radius: 10px;">
-                <br>
+                <br />
                 <h5 class="table-title">Categorias</h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">
-                                                                                                                                                                                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                                                                                                            </span>
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
+                                                ></span>
                     </div>
                     <input v-model="filtroCategoria" @input="pesquisaCategoria" type="text" class="form-control" placeholder="Pesquisar categoria" />&nbsp;&nbsp;
-    
-    
                 </div>
-                <br>
+                <br />
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -86,39 +68,24 @@
                                 <th scope="col">Nome</th>
                             </tr>
                         </thead>
-                        <tbody style="text-align: center;">
-                            <tr v-for="(categorias, index) in mockupData.categorias" :key="index">
-                                <td>{{ categorias.nome }}</td>
-    
+                        <tbody style="text-align: center; cursor: pointer;">
+                            <tr v-for="(categoria, index) in categorias" :key="index">
+                                <td>{{ categoria.nome }}</td>
                             </tr>
-    
                         </tbody>
                     </table>
-                    <nav>
-                        <!-- <ul class="pagination">
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === 0}">
-                                                                                                                    <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                                                                                                                                                                                              <span aria-hidden="true">&laquo;</span>
-                                                                                                                                                                                            </a>
-                                                                                                                </li>
-                                                                                                                <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
-                                                                                                                    <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
-                                                                                                                </li>
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
-                                                                                                                    <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                                                                                                                                                                                              <span aria-hidden="true">&raquo;</span>
-                                                                                                                                                                                            </a>
-                                                                                                                </li>
-                                                                                                            </ul> -->
-                    </nav>
+    
+    
+    
                 </div>
             </div>
+            <!--END COLUNA 2-->
     
     
         </div>
     </div>
     
-    <!-- modal -->
+    <!-- MODAL -->
     <div class="modal-mask" v-if="modalArea" @click="fecharModalFora">
         <div class="container-modal" style="width: 60%; margin-bottom: 1rem;">
             <div style="display: flex; flex-direction: column; padding-inline: 3rem; margin-top: none; height: min-content;">
@@ -126,17 +93,29 @@
                     <h3>Vincular responsáveis</h3>
                     <br>
                 </div>
+                <div style="display: flex; flex-flow: column; width: 100%; height: ;">
+                    <!-- <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i>  -->
+                    <div class="form-group input-group" style="width: 100%;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
+                                                ></span>
+                        </div>
+                        <input v-if="mostrarInput" type="text" v-model="responsavelSelecionado" class="form-control" @focusin="this.procurar()" style="background-color: #f1f1f1; color: black;" @focusout="fecharLista" @input="this.procurar()" placeholder="Pesquisar" />
+                        <div style="height: 11rem; overflow: auto; background-color: #f1f1f1; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; position: absolute; margin-top: 2.5rem; width: 30rem;" v-if="responsavelFiltrado">
+                            <ul style="list-style: none;">
+                                <li v-for="item in responsavelFiltrado" :key="item.id" style="cursor: pointer;" @click="selecionarResponsavel(item)">
+                                    {{ item.nomeCompleto }}
+                                </li>
+                            </ul>
+                        </div>
+                        {{ responsavelSelecionado }}
     
+                    </div>
+                </div>
     
-                <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                                                       
-                                                                                                                                                                                                          <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                                                          <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                                                            
-                                                                                                                                                                                                        </button>
+                <!-- <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
+                                 <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i></button> -->
     
-                <input type="text" v-if="mostrarInput">
-                <br>
     
     
                 <div class="table-responsive">
@@ -181,21 +160,24 @@
         </div>
     </div>
     
-    <!-- End Modal -->
+    <!-- END MODAL -->
 </template>
 
 <script>
+import axios from 'axios';
+
 const mockupData = {
     areas: [
-        { nome: 'Informática' },
-        { nome: 'Marketing' },
-        { nome: 'Financeiro' },
+        { nome: 'Informática', categorias: ['Impressora', 'Software', 'Notebook'] },
+        { nome: 'Marketing', categorias: ['Publicidade', 'Pesquisa de Mercado', 'Eventos'] },
+        { nome: 'Financeiro', categorias: ['Contabilidade', 'Folha de Pagamento', 'Investimentos'] },
     ],
     categorias: [
         { nome: 'Impressora' },
         { nome: 'Software' },
         { nome: 'Notebook' },
     ],
+    // categorias: [],
     responsaveis: [
         { nome: 'Coordenador Facilities' },
         { nome: 'Diretoria Geral' },
@@ -205,7 +187,7 @@ const mockupData = {
         { nome: 'Thalamus - Orçamentos / Compras' },
         { nome: 'Thalamus - Catraca' },
         { nome: 'Thalamus - Projetos ' }
-    ]
+    ],
 
 };
 export default {
@@ -213,26 +195,96 @@ export default {
     data() {
         return {
             modalArea: false,
-            mostrarInput: false,
+            mostrarInput: true,
             filtroCategoria: '',
             filtroDespesa: '',
             mockupData,
+            responsavelSelecionado: null,
+            responsavelFiltrado: null,
+            gerente: [],
+            setores: [],
+            categorias: [],
+            filteredAreas: [],
 
 
         }
     },
     methods: {
+        carregarCategorias(area) {
+            this.categorias = area.categorias;
+        },
+        selecionarArea(area) {
+            this.modalArea = false;
+            this.carregarCategorias(area);
+        },
         fecharModalFora(event) {
             if (event.target.classList.contains('modal-mask')) {
                 this.modalArea = false;
             }
         },
+        procurar() {
+            if (!this.responsavelSelecionado) {
+                this.responsavelFiltrado = this.gerente
+                console.log(this.responsavelFiltrado)
+            } else {
+                if (this.responsavelFiltrado !== null) {
 
+                    this.responsavelFiltrado = this.responsavelFiltrado.filter(nome => nome.nomeCompleto.toLowerCase().startsWith(this.responsavelSelecionado.toLowerCase()));
+                    // console.log(this.listaPessoasFiltrada = this.listaPessoasFiltrada.filter(nome => nome.nomeCompleto.toLowerCase().startsWith(this.pessoaSelecionada.toLowerCase())))
+                }
+            }
+
+        },
+        fecharLista() {
+            setTimeout(() => {
+                this.responsavelFiltrado = null;
+                this.responsavelSelecionado = null;
+            }, 200);
+        },
+        getGerenteseSetor() {
+            axios.get('http://192.168.0.6:8000/api/setor/', {})
+                .then((response) => {
+                    this.gerente = response.data.data
+                    this.gerente = this.gerente.map(item => ({
+                        id: item.id,
+                        nomeCompleto: item.nome,
+
+                    }))
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+            axios.get('http://192.168.0.6:8000/api/setor', {})
+                .then((response) => {
+                    this.setores = response.data.data
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+
+        selecionarResponsavel(responsavel) {
+            console.log('Responsável selecionado:', responsavel.nomeCompleto);
+        },
+
+        pesquisaDespesa() {
+            this.mockupData.filteredAreas = this.mockupData.areas.filter(area =>
+                area.nome.toLowerCase().includes(this.filtroDespesa.toLowerCase())
+            );
+        },
+
+        pesquisaCategoria() {
+            this.filteredCategorias = this.mockupData.categorias.filter(categoria =>
+                categoria.nome.toLowerCase().includes(this.filtroCategoria.toLowerCase())
+            );
+        },
 
 
     },
 
     mounted() {
+        this.getGerenteseSetor()
 
     }
 }
