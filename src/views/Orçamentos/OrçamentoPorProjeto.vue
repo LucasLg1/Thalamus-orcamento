@@ -5,8 +5,8 @@
                                                                                                           Áreas e Projetos
                                                                                                         </button> -->
             <div class="col-sm-12" style="text-align: center;">
-                <h3><i class="fa-solid fa-scale-balanced"></i></h3>
-                <h3 class="titulo"> Orçamento por Área: </h3>
+                <h3><i class="fa-solid fa-diagram-project"></i></h3>
+                <h3 class="titulo"> Orçamento por Projeto: </h3>
     
                 <br>
     
@@ -19,26 +19,20 @@
                             <select class="form-select combo">
                                          <option value="" disabled> Selecione </option>
                                                                         <!-- <option v-for="ano in anosDisponiveis" :key="ano" :value="ano">{{ ano }}</option> -->
-                                         </select> &nbsp;&nbsp; <i title="Clique para adicionar Ano / Exercício" class="fa-solid fa-circle-plus" style="color: green; " @click="modalArea = !modalArea"></i>
+                                         </select> 
                         </div>
                     </div>
     
-                    <div class="col-sm-3" style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
-                        <div style="margin-bottom: 5px;">
-                            <label> Área: </label>
-                        </div>
-                        <select class="form-select combo">
-                                                                    <option value="" disabled> Selecione </option>
-                                                                    <!-- <option v-for="ano in anosDisponiveis" :key="ano" :value="ano">{{ ano }}</option> -->
-                                                                </select>
-                    </div>
+                    
     
                     <div class="col-sm-3" style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
                         <div style="margin-bottom: 5px;">
-                            <label> Categoria: </label>
+                            <label> Projeto: </label>
                         </div>
-                        <select class="form-select combo">
-                                                                    <option value="" disabled> Selecione </option>
+                        <select id="id_projetos" v-model="id_projetos" class="form-select">
+                            <option v-for="projeto in projetos" :key="projeto.id" :value="projeto.id">
+                            {{ projeto.Nome }}
+                        </option>
                                                                 </select>
                     </div>
                     <br><br>
@@ -72,17 +66,18 @@
                 </div>
             </div>
             <br>
-            <div class="col-sm-12">
+            <!-- <div class="col-sm-12">
                 <div class="form-check checkbox">
                     <br>
                     <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
                     <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
                 </div>
-            </div>
-            <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-            {{ valorMensal }}
-            <br>
+            </div> -->
+            <!-- <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
+            {{ valorMensal }} -->
+            <br><br>
             <div class="table-responsive">
+                <br><br>
                 <table class="table table-hover">
                     <thead>
                         <tr style="text-align: center;">
@@ -162,6 +157,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { devURL } from '../../services/api'
 import { Money3Component } from 'v-money3'
 
 const mockupData = {
@@ -201,8 +198,9 @@ export default {
             valorMensal: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0'],
             filtroAno: '',
             ano: '',
-            mockupData
-
+            mockupData,
+            devURL: devURL,
+            projetos: ''
 
         };
     },
@@ -220,6 +218,20 @@ export default {
 
         adicionarAno(){
             console.log("tecla pressionada")
+        },
+
+        getAllProjetos(){
+           
+
+            axios.get(`${this.devURL}/sgi/projeto/lista`, {
+      })
+                .then((response) => {
+                    this.projetos = response.data
+                    console.log(this.projetos)
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         }
 
     },
@@ -231,7 +243,7 @@ export default {
 
 
     mounted() {
-
+        this.getAllProjetos()
 
         this.$watch('orcamentoTotal', function(newVal) {
             this.orcamentoDividido = (newVal / 12).toFixed(2);

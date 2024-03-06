@@ -9,9 +9,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
+
 const app = createApp(App)
 app.use(BootstrapVueNext)
-
 app.use(router)
 app.use(PrimeVue)
 app.mount('#app')

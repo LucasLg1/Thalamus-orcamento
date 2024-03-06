@@ -13,6 +13,8 @@ import GerenciamentoDeProjeto from '../views/Orçamentos/GerenciamentoDeProjeto.
 //Orçamento
 import OrcamentoPorArea from '../views/Orçamentos/OrçamentoPorArea'
 import OrcamentoPorMes from '../views/Orçamentos/DefinirOrçamentoMensal'
+import OrcamentoPorProjeto from '../views/Orçamentos/OrçamentoPorProjeto.vue'
+
 
 
 //Materiais
@@ -20,7 +22,15 @@ import AprovacaoMateriais from '../views/Compras/AprovaçãoMateriais'
 import EntregaMateriais from '../views/Compras/EntregaMateriais'
 import SolicitacaoMateriais from '../views/Compras/SolicitaçãoMateriais'
 
+//Teste
+import TesteView from '../views/TesteView.vue'
 const routes = [
+{
+  path: '/teste',
+  name: 'teste',
+  component: TesteView
+},
+
   //Home
   {
     path: '/',
@@ -55,6 +65,11 @@ const routes = [
     path: '/orcamento/mensal',
     name: 'OrcamentoMes',
     component: OrcamentoPorMes
+  },
+  {
+    path: '/orcamento/projeto',
+    name: 'OrcamentoProjeto',
+    component: OrcamentoPorProjeto
   },
 
 

@@ -20,6 +20,7 @@
     "v-money3": "^3.24.1",
     "vue": "^3.4.15",
     "vue-autosuggest": "^2.2.0",
+    "vue-json-excel": "^0.3.0",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },

@@ -6,7 +6,7 @@
                 <router-link to="/projeto/novo">Projetos</router-link>
             </nav>
             <div class="col-sm-12" style="text-align: center;">
-                <h3 class="titulo"> Thalamus Orçamentos </h3>
+                <h3 class="titulo"> Thalamus Orçamentos <i class="fa-solid fa-piggy-bank"></i> </h3>
                 <br><br>
             </div>
         </div>
@@ -15,27 +15,23 @@
     
         <div class="row">
     
-    
-    
-    
-    
             <div class="col-sm-12" style="text-align: center; border: 1px solid grey; border-radius: 10px; margin-top: 20px; background-color: white;">
                 <br>
-                <h5 class="table-title">Projetos</h5>
+                <h5 class="table-title">Projetos &nbsp; <i class="fa-solid fa-diagram-project"></i></h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                                                                                                                                                                                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                                                                                                            </span>
+                                                                                                                                                                                                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                                                                                                                                </span>
                     </div>
                     <input v-model="filtroProjeto" @input="pesquisaProjeto" type="text" class="form-control" placeholder="Pesquisar projeto" />&nbsp;&nbsp;
     
     
                 </div>
                 <br>
-                <label >Escolha um projeto para visualizar</label>
-
-                <div class="table-responsive" >
+                <label style="color: dimgray;">Escolha um projeto para visualizar</label>
+    
+                <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr style="text-align: center;">
@@ -52,90 +48,25 @@
                     </table>
                     <nav>
                         <!-- <ul class="pagination">
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === 0}">
-                                                                                                                    <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                                                                                                                                                                                              <span aria-hidden="true">&laquo;</span>
-                                                                                                                                                                                            </a>
-                                                                                                                </li>
-                                                                                                                <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
-                                                                                                                    <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
-                                                                                                                </li>
-                                                                                                                <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
-                                                                                                                    <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                                                                                                                                                                                              <span aria-hidden="true">&raquo;</span>
-                                                                                                                                                                                            </a>
-                                                                                                                </li>
-                                                                                                            </ul> -->
+                                                                                                                    <li class="page-item" :class="{disabled: currentPage === 0}">
+                                                                                                                        <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
+                                                                                                                                                                                                  <span aria-hidden="true">&laquo;</span>
+                                                                                                                                                                                                </a>
+                                                                                                                    </li>
+                                                                                                                    <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
+                                                                                                                        <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
+                                                                                                                    </li>
+                                                                                                                    <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
+                                                                                                                        <a class="page-link" href="#" aria-label="Next" @click="nextPage">
+                                                                                                                                                                                                  <span aria-hidden="true">&raquo;</span>
+                                                                                                                                                                                                </a>
+                                                                                                                    </li>
+                                                                                                                </ul> -->
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- modal -->
-    <div class="modal-mask" v-if="modalArea" @click="fecharModalFora">
-        <div class="container-modal" style="width: 60%; margin-bottom: 1rem;">
-            <div style="display: flex; flex-direction: column; padding-inline: 3rem; margin-top: none; height: min-content;">
-                <div class="tituloModal">
-                    <h3>Vincular responsáveis</h3>
-                    <br>
-                </div>
-    
-    
-                <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                                                       
-                                                                                                                                                                                                          <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                                                          <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                                                            
-                                                                                                                                                                                                        </button>
-    
-                <input type="text" v-if="mostrarInput">
-                <br>
-    
-    
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr style="text-align: center; ">
-                                <th scope="col">Área</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody style="text-align: center;">
-                            <tr>
-                                <td>Coordenador Facilities</td>
-                                <td>
-                                    <div>
-                                        <i class="fa-solid fa-circle-minus" style="color: red;"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Diretoria Geral</td>
-                                <td>
-                                    <div>
-                                        <i class="fa-solid fa-circle-minus" style="color: red;"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Supervisor de Produção</td>
-                                <td>
-                                    <div>
-                                        <i class="fa-solid fa-circle-minus" style="color: red;"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-    
-    
-            </div>
-        </div>
-    </div>
-    
-    <!-- End Modal -->
 </template>
 
 <script>
