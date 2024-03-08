@@ -42,6 +42,14 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <!-- <div class="d-flex justify-content-center mt-3">
+                    <ul class="pagination">
+                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(projetos.length / itemsPerPage)" :key="page">
+                            <a class="page-link" @click="currentPage = page">{{ page }}</a>
+                        </li>
+                    </ul>
+                </div> -->
             </div>
             <!--END COLUNA 1-->
     
@@ -74,6 +82,14 @@
                     </table>
     
                 </div>
+                <br>
+                <!-- <div class="d-flex justify-content-center mt-3">
+                    <ul class="pagination">
+                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(projetos.length / itemsPerPage)" :key="page">
+                            <a class="page-link" @click="currentPage = page">{{ page }}</a>
+                        </li>
+                    </ul>
+                </div> -->
             </div>
             <!--END COLUNA 2-->
     

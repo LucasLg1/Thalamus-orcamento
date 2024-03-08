@@ -21,8 +21,8 @@
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                                                                                                                                                                                                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                                                                                                                </span>
+                                                                                                                                                                                                                                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                                                                                                                                                                        </span>
                     </div>
                     <input v-model="filtroProjeto" @input="pesquisaProjeto" type="text" class="form-control" placeholder="Pesquisar projeto" />&nbsp;&nbsp;
     
@@ -39,30 +39,25 @@
                             </tr>
                         </thead>
                         <tbody style="text-align: center; cursor: pointer;">
-                            <tr v-for="(projetos, index) in mockupData.projetos" :key="index">
-                                <td>{{ projetos.nome }}</td>
+                            <tr v-for="(projeto, index) in paginatedData" :key="index">
+                                <td>{{ projeto.Nome }}</td>
     
                             </tr>
     
                         </tbody>
                     </table>
-                    <nav>
-                        <!-- <ul class="pagination">
-                                                                                                                    <li class="page-item" :class="{disabled: currentPage === 0}">
-                                                                                                                        <a class="page-link" href="#" aria-label="Previous" @click="prevPage">
-                                                                                                                                                                                                  <span aria-hidden="true">&laquo;</span>
-                                                                                                                                                                                                </a>
-                                                                                                                    </li>
-                                                                                                                    <li v-for="n in numberOfPages" :key="n" class="page-item" :class="{active: n === currentPage}">
-                                                                                                                        <a class="page-link" href="#" @click="setPage(n)">{{ n + 1 }}</a>
-                                                                                                                    </li>
-                                                                                                                    <li class="page-item" :class="{disabled: currentPage === numberOfPages - 1}">
-                                                                                                                        <a class="page-link" href="#" aria-label="Next" @click="nextPage">
-                                                                                                                                                                                                  <span aria-hidden="true">&raquo;</span>
-                                                                                                                                                                                                </a>
-                                                                                                                    </li>
-                                                                                                                </ul> -->
-                    </nav>
+    
+                </div>
+    
+    
+    
+                <br>
+                <div class="d-flex justify-content-center mt-3">
+                    <ul class="pagination">
+                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(projetos.length / itemsPerPage)" :key="page">
+                            <a class="page-link" @click="currentPage = page">{{ page }}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -70,26 +65,20 @@
 </template>
 
 <script>
-const mockupData = {
+import axios from 'axios';
+import { devURL } from '../../services/api';
 
-    projetos: [
-        { nome: 'Thalamus - Orçamentos / Compras' },
-        { nome: 'Thalamus - Catraca' },
-        { nome: 'Thalamus - Projetos ' }
-    ]
-
-};
 export default {
-    components: {},
     data() {
         return {
             modalArea: false,
             mostrarInput: false,
-            mockupData,
-            filtroProjeto: ''
-
-
-        }
+            projetos: [],
+            filtroProjeto: '',
+            devURL: devURL,
+            currentPage: 1,
+            itemsPerPage: 5,
+        };
     },
     methods: {
         fecharModalFora(event) {
@@ -97,16 +86,40 @@ export default {
                 this.modalArea = false;
             }
         },
-
-
-
+        getAllProjetos() {
+            axios.get(`${this.devURL}/sgi/projeto/lista`)
+                .then((response) => {
+                    this.projetos = response.data;
+                    // console.log("Projetos loaded:", this.projetos);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        pesquisaProjeto() {
+            this.currentPage = 1;
+        },
     },
-
-    mounted() {
-
-    }
+    computed: {
+        projetosFiltrados() {
+            return this.projetos.filter(item =>
+                item.Nome.toLowerCase().includes(this.filtroProjeto.trim().toLowerCase())
+            );
+        },
+        paginatedData() {
+            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+            return this.projetosFiltrados.slice(startIndex, endIndex);
+        },
+    },
+    created() {
+        this.getAllProjetos();
+    },
 }
 </script>
+
+
+
 
 <style>
 .table-title {

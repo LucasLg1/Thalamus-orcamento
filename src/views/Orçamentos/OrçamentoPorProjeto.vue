@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <!-- <button style="position: absolute; width: 10rem; margin-left: 65rem; margin-top: 3.5rem;" type="button" class="button-cadastrar" @click="adicionarPessoa">
-                                                                                                          Áreas e Projetos
-                                                                                                        </button> -->
+                                                                                                              Áreas e Projetos
+                                                                                                            </button> -->
             <div class="col-sm-12" style="text-align: center;">
                 <h3><i class="fa-solid fa-diagram-project"></i></h3>
                 <h3 class="titulo"> Orçamento por Projeto: </h3>
@@ -17,23 +17,23 @@
                         </div>
                         <div style="display: flex; align-items: center;">
                             <select class="form-select combo">
-                                         <option value="" disabled> Selecione </option>
-                                                                        <!-- <option v-for="ano in anosDisponiveis" :key="ano" :value="ano">{{ ano }}</option> -->
-                                         </select> 
+                                             <option value="" disabled> Selecione </option>
+                                                                            <!-- <option v-for="ano in anosDisponiveis" :key="ano" :value="ano">{{ ano }}</option> -->
+                                             </select>
                         </div>
                     </div>
     
-                    
+    
     
                     <div class="col-sm-3" style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
                         <div style="margin-bottom: 5px;">
                             <label> Projeto: </label>
                         </div>
                         <select id="id_projetos" v-model="id_projetos" class="form-select">
-                            <option v-for="projeto in projetos" :key="projeto.id" :value="projeto.id">
-                            {{ projeto.Nome }}
-                        </option>
-                                                                </select>
+                                <option v-for="projeto in projetos" :key="projeto.id" :value="projeto.id">
+                                {{ projeto.Nome }}
+                            </option>
+                                                                    </select>
                     </div>
                     <br><br>
                 </div>
@@ -67,14 +67,14 @@
             </div>
             <br>
             <!-- <div class="col-sm-12">
-                <div class="form-check checkbox">
-                    <br>
-                    <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
-                    <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
-                </div>
-            </div> -->
+                    <div class="form-check checkbox">
+                        <br>
+                        <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
+                        <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
+                    </div>
+                </div> -->
             <!-- <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-            {{ valorMensal }} -->
+                {{ valorMensal }} -->
             <br><br>
             <div class="table-responsive">
                 <br><br>
@@ -89,11 +89,11 @@
                         <tr>
                             <td v-for="(value, index) in valorMensal" :key="index">
                                 <money3 v-model="valorMensal[index]" v-bind="config" style="text-align: center; width: 7rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
-                                <label >R$10,00</label>
-                             
-
+                                <label>R$10,00</label>
+    
+    
                             </td>
-                           
+    
                         </tr>
                     </tbody>
                 </table>
@@ -111,25 +111,25 @@
             <div style="display: flex; align-items: center; margin-left: auto;">
                 <input @keyup.enter="adicionarAno" v-model="ano" type="text" class="form-control" placeholder="Adicionar ano / exercício" />
                 <i class="fa-solid fa-circle-plus" style="color: green; margin-left: 5px;" @click="mostrarInput=true"></i>
-                
-
+    
+    
             </div>
             <br>
             <div class="form-group input-group" style="width: 100%;">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                                    ></span>
+                                                                        ></span>
                 </div>
                 <input v-model="filtroAno" type="text" class="form-control" placeholder="Pesquisar ano / exercício" />&nbsp;&nbsp;
             </div>
     
     
             <!-- <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                       
-                                                                                                                                                                       <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                       <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                         
-                                                                                                                                                                     </button> -->
+                                                                                                                                                                           
+                                                                                                                                                                           <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
+                                                                                                                                                                           <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
+                                                                                                                             
+                                                                                                                                                                         </button> -->
             <br>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -144,7 +144,7 @@
                         <tr v-for="(ano, index) in mockupData.anos" :key="index">
                             <td>{{ ano.nome }}</td>
                             <td><i class="fa-solid fa-circle-minus" style="color: red;"></i> </td>
-
+    
                         </tr>
                     </tbody>
                 </table>
@@ -168,8 +168,8 @@ const mockupData = {
         { nome: 2024 }
     ],
     orcamentos: [
-    [10000, 15000, 12000, 18000, 20000, 25000, 22000, 30000, 28000, 35000, 32000, 40000],
-  ]
+        [10000, 15000, 12000, 18000, 20000, 25000, 22000, 30000, 28000, 35000, 32000, 40000],
+    ]
 }
 
 export default {
@@ -216,15 +216,12 @@ export default {
             }
         },
 
-        adicionarAno(){
+        adicionarAno() {
             console.log("tecla pressionada")
         },
 
-        getAllProjetos(){
-           
-
-            axios.get(`${this.devURL}/sgi/projeto/lista`, {
-      })
+        getAllProjetos() {
+            axios.get(`${this.devURL}/sgi/projeto/lista`, {})
                 .then((response) => {
                     this.projetos = response.data
                     console.log(this.projetos)
