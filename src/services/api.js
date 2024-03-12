@@ -1,6 +1,7 @@
 import axios from "axios";
 
   const devURL= 'http://192.168.0.6:8000/api';
+  const prodURL = 'http://192.168.0.5:8000/api'
    const baseURL = 'http://192.168.0.5:8082';
 
 
@@ -29,5 +30,6 @@ api.interceptors.request.use(
   );
 
   export {devURL};
+  export {prodURL};
 
 export default api;

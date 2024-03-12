@@ -1,6 +1,6 @@
 <template>
-    <div class="container ">
-        <div class="row ">
+    <div class="container">
+        <div class="row">
             <nav>
                 <router-link to="/area/novo">Despesas</router-link> |
                 <router-link to="/projeto/novo">Projetos</router-link>
@@ -16,13 +16,12 @@
         <div class="row text-center">
             <div class="col-sm-5" style="background-color: white; border: 1px solid grey; border-radius: 10px; padding: 1rem; margin-right: 150px;">
                 <br />
-                <h5 class="table-title"> Despesas Correntes &nbsp;   <i class="fa-solid fa-chart-line"></i></h5>
+                <h5 class="table-title"> Despesas Correntes &nbsp; <i class="fa-solid fa-chart-line"></i></h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                    ></span>
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
-                    <input v-model="filtroDespesa" @input="pesquisaDespesa" type="text" class="form-control" placeholder="Pesquisar despesas" />&nbsp;&nbsp;
+                    <input v-model="searchDespesa" @input="filterDespesas" type="text" class="form-control" placeholder="Pesquisar despesas" />&nbsp;&nbsp;
                 </div>
                 <br />
                 <label style="color: dimgray;">Escolha uma área, para visualizar as categorias</label>
@@ -35,21 +34,21 @@
                             </tr>
                         </thead>
                         <tbody style="text-align: center; cursor: pointer;">
-                            <tr v-for="(area, index) in mockupData.areas" :key="index" @click="carregarCategorias(area)">
+                            <tr v-for="(area, index) in paginatedDespesas" :key="index" @click="carregarCategorias(area)">
                                 <td>{{ area.nome }}</td>
                                 <td><i title="Clique para vincular responsável" class="fa-solid fa-user-group" @click="modalArea = !modalArea"></i> &nbsp; </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <br>
-                <!-- <div class="d-flex justify-content-center mt-3">
+                <div class="d-flex justify-content-center mt-3">
                     <ul class="pagination">
-                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(projetos.length / itemsPerPage)" :key="page">
+                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(filteredAreas.length / itemsPerPage)" :key="page">
                             <a class="page-link" @click="currentPage = page">{{ page }}</a>
                         </li>
                     </ul>
-                </div> -->
+                </div>
+                <br>
             </div>
             <!--END COLUNA 1-->
     
@@ -59,14 +58,12 @@
                 <h5 class="table-title">Categorias&nbsp; <i class="fa-solid fa-list"></i></h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                    ></span>
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
-                    <input v-model="filtroCategoria" @input="pesquisaCategoria" type="text" class="form-control" placeholder="Pesquisar categoria" />&nbsp;&nbsp;
-                </div>
+                    <input v-model="searchCategoria" @input="filterCategoria" type="text" class="form-control" placeholder="Pesquisar categoria" />&nbsp;&nbsp;                </div>
                 <br />
                 <label style="color: dimgray;">Escolha uma categoria, para visualizar os Orçamentos</label>
-
+    
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
@@ -75,21 +72,20 @@
                             </tr>
                         </thead>
                         <tbody style="text-align: center; cursor: pointer;">
-                            <tr v-for="(categoria, index) in categoriasDaArea" :key="index">
+                            <tr v-for="(categoria, index) in paginatedCategorias" :key="index">
                                 <td>{{ categoria }}</td>
                             </tr>
                         </tbody>
                     </table>
-    
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <!-- <ul class="pagination">
+                  <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(filteredCategorias.length / itemsPerPage)" :key="page">
+                    <a class="page-link" @click="currentPage = page">{{ page }}</a>
+                  </li>
+                </ul> -->
                 </div>
                 <br>
-                <!-- <div class="d-flex justify-content-center mt-3">
-                    <ul class="pagination">
-                        <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(projetos.length / itemsPerPage)" :key="page">
-                            <a class="page-link" @click="currentPage = page">{{ page }}</a>
-                        </li>
-                    </ul>
-                </div> -->
             </div>
             <!--END COLUNA 2-->
     
@@ -110,24 +106,24 @@
                     <div class="form-group input-group" style="width: 100%;">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                    ></span>
+                                                                        ></span>
                         </div>
                         <input v-if="mostrarInput" type="text" v-model="responsavelSelecionado" class="form-control" @focusin="this.procurar()" style="background-color: #f1f1f1; color: black;" @focusout="fecharLista" @input="this.procurar()" placeholder="Pesquisar responsável"
                         />
                         <div style="height: 11rem; overflow: auto; background-color: #f1f1f1; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; position: absolute; margin-top: 2.5rem; width: 30rem;" v-if="responsavelFiltrado">
                             <ul style="list-style: none;">
                                 <li v-for="item in responsavelFiltrado" :key="item.id" style="cursor: pointer;" @click="selecionarResponsavel(item)">
-                                    {{ item.nomeCompleto }}
+                                    {{ item.nome }}
                                 </li>
                             </ul>
                         </div>
-                        {{ responsavelSelecionado }}
+                        <!-- {{ responsavelSelecionado }} -->
     
                     </div>
                 </div>
     
                 <!-- <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                     <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i></button> -->
+                                                         <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i></button> -->
     
     
     
@@ -162,13 +158,17 @@ import axios from 'axios';
 const mockupData = {
     areas: [
         { nome: 'Informática', categorias: ['Impressora', 'Software', 'Notebook'] },
-        { nome: 'Marketing', categorias: ['Publicidade', 'Pesquisa de Mercado', 'Eventos'] },
+        { nome: 'Marketing', categorias: ['Publicidade', 'Pesquisa de Mercado', 'Eventos', 'Externo', 'Interno', 'Rede Social'] },
         { nome: 'Financeiro', categorias: ['Contabilidade', 'Folha de Pagamento', 'Investimentos'] },
+        { nome: 'Pesquisa e Desenvolvimento', categorias: ['Ferramental produtivo'] },
+        { nome: 'Sustentabilidade', categorias: ['Projetos Sociais'] },
+        { nome: 'Compliance', categorias: ['Advogados', 'Ceriticação Digital', 'Cartórios'] },
+        { nome: 'Recursos Humanos', categorias: ['Endomarketing'] },
+        { nome: 'Facilities', categorias: ['IPTU', 'TFLF'] },
+
     ],
     categorias: [
-        { nome: 'Impressora' },
-        { nome: 'Software' },
-        { nome: 'Notebook' },
+      
     ],
     // categorias: [],
     responsaveis: [
@@ -191,7 +191,7 @@ export default {
         return {
             modalArea: false,
             mostrarInput: true,
-            filtroCategoria: '',
+            searchCategoria: '',
             filtroDespesa: '',
             mockupData,
             responsavelSelecionado: null,
@@ -200,15 +200,31 @@ export default {
             setores: [],
             categorias: [],
             filteredAreas: [],
-            categoriasDaArea: []
-
+            filteredCategorias: [],
+            categoriasDaArea: [],
+            currentPage: 1,
+            itemsPerPage: 5,
+            searchDespesa: ''
 
         }
     },
     methods: {
+        filterDespesas() {
+            this.filteredAreas = this.mockupData.areas.filter(area =>
+                area.nome.toLowerCase().includes(this.searchDespesa.toLowerCase())
+            );
+        },
+        filterCategoria() {
+    // console.log('Search Categoria:', this.searchCategoria);
+    this.filteredCategorias = this.mockupData.categorias.filter(categoria =>
+        categoria.nome.toLowerCase().includes(this.searchCategoria.toLowerCase())
+    );
+    // console.log('Filtered Categorias:', this.filteredCategorias);
+},
+
         carregarCategorias(area) {
-      this.categoriasDaArea = area.categorias;
-    },
+            this.categoriasDaArea = area.categorias;
+        },
         selecionarArea(area) {
             this.modalArea = false;
             this.carregarCategorias(area);
@@ -221,11 +237,11 @@ export default {
         procurar() {
             if (!this.responsavelSelecionado) {
                 this.responsavelFiltrado = this.gerente
-                console.log(this.responsavelFiltrado)
+                // console.log(this.responsavelFiltrado)
             } else {
                 if (this.responsavelFiltrado !== null) {
 
-                    this.responsavelFiltrado = this.responsavelFiltrado.filter(nome => nome.nomeCompleto.toLowerCase().startsWith(this.responsavelSelecionado.toLowerCase()));
+                    this.responsavelFiltrado = this.responsavelFiltrado.filter(nome => nome.nome.toLowerCase().startsWith(this.responsavelSelecionado.toLowerCase()));
                     // console.log(this.listaPessoasFiltrada = this.listaPessoasFiltrada.filter(nome => nome.nomeCompleto.toLowerCase().startsWith(this.pessoaSelecionada.toLowerCase())))
                 }
             }
@@ -240,10 +256,10 @@ export default {
         getGerenteseSetor() {
             axios.get('http://192.168.0.6:8000/api/setor/', {})
                 .then((response) => {
-                    this.gerente = response.data.data
+                    this.gerente = response.data
                     this.gerente = this.gerente.map(item => ({
                         id: item.id,
-                        nomeCompleto: item.nome,
+                        nome: item.nome,
 
                     }))
                 })
@@ -253,7 +269,7 @@ export default {
 
             axios.get('http://192.168.0.6:8000/api/setor', {})
                 .then((response) => {
-                    this.setores = response.data.data
+                    this.setores = response.data
                 })
                 .catch((error) => {
                     console.error(error);
@@ -261,7 +277,7 @@ export default {
         },
 
         selecionarResponsavel(responsavel) {
-            console.log('Responsável selecionado:', responsavel.nomeCompleto);
+            console.log('Responsável selecionado:', responsavel.nome);
         },
 
         pesquisaDespesa() {
@@ -270,18 +286,35 @@ export default {
             );
         },
 
-        pesquisaCategoria() {
-            this.filteredCategorias = this.mockupData.categorias.filter(categoria =>
-                categoria.nome.toLowerCase().includes(this.filtroCategoria.toLowerCase())
-            );
-        },
+
+
 
 
     },
 
     mounted() {
-        this.getGerenteseSetor()
+        this.getGerenteseSetor();
+        this.filterDespesas();
+        this.filterCategoria();
 
+    },
+
+
+
+    computed: {
+        paginatedDespesas() {
+            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+            return this.filteredAreas.slice(startIndex, endIndex);
+        },
+        paginatedCategorias() {
+
+            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+            return this.categoriasDaArea.slice(startIndex, endIndex);
+
+            // return this.categoriasDaArea.slice(0, this.itemsPerPage);
+        },
     }
 }
 </script>

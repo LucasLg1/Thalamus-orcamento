@@ -1,40 +1,37 @@
 <template>
     <div class="container">
         <div class="row">
-            <!-- <button style="position: absolute; width: 10rem; margin-left: 65rem; margin-top: 3.5rem;" type="button" class="button-cadastrar" @click="adicionarPessoa">
-                                                                                                              Áreas e Projetos
-                                                                                                            </button> -->
             <div class="col-sm-12" style="text-align: center;">
                 <h3><i class="fa-solid fa-diagram-project"></i></h3>
-                <h3 class="titulo"> Orçamento por Projeto: </h3>
-    
+                <h3 class="titulo"> Orçamento por Projeto: {{ codProjeto }} </h3>
                 <br>
-    
                 <div class="row align-items-center justify-content-center">
                     <div class="col-sm-3" style="margin-bottom: 10px;">
                         <div style="margin-bottom: 5px;">
                             <label> Ano / Exercício: </label>
                         </div>
                         <div style="display: flex; align-items: center;">
-                            <select class="form-select combo">
-                                             <option value="" disabled> Selecione </option>
-                                                                            <!-- <option v-for="ano in anosDisponiveis" :key="ano" :value="ano">{{ ano }}</option> -->
-                                             </select>
+                            <select v-model="anoSelecionado" class="form-select combo">
+                                                        <option value="" disabled> Selecione </option>
+                                                        <option v-for="ano in mockupData.anos" :key="ano.nome">
+                                                            {{ ano.nome }}
+                                                        </option>
+                                                    </select>
                         </div>
                     </div>
-    
-    
     
                     <div class="col-sm-3" style="margin-bottom: 10px; display: flex; flex-direction: column; align-items: center;">
                         <div style="margin-bottom: 5px;">
                             <label> Projeto: </label>
                         </div>
-                        <select id="id_projetos" v-model="id_projetos" class="form-select">
-                                <option v-for="projeto in projetos" :key="projeto.id" :value="projeto.id">
-                                {{ projeto.Nome }}
+                        <select v-model="projetoSelecionado" @change="carregarDadosProjeto" class="form-select combo">
+                            <option value="" disabled> Selecione </option>
+                            <option v-for="projeto in listaProjetos" :key="projeto.id">
+                                {{ projeto.Projeto }}
                             </option>
-                                                                    </select>
+                        </select>
                     </div>
+    
                     <br><br>
                 </div>
                 <br><br> <br><br>
@@ -44,17 +41,18 @@
     
             <div class="row">
     
+    
                 <div class="col-sm-4" style="text-align: center;">
                     <h5>Orçamento Total</h5>
                     <div class="quadradoTotal">
-                        <money3 v-model="orcamentoTotal" v-bind="config" style="text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
+                        <money3 :disabled="false" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
     
                     </div>
                 </div>
                 <div class="col-sm-4" style="text-align: center;">
                     <h5>Orçamento Utilizado</h5>
                     <div class="quadradoUtilizado">
-                        R$ 15.000
+                        <money3 :model-value="projetos && projetos[1] && projetos[1].totais && projetos[1].totais.ValorTotalProjeto" :disabled="true" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: transparent;"></money3>
                     </div>
                 </div>
     
@@ -67,14 +65,14 @@
             </div>
             <br>
             <!-- <div class="col-sm-12">
-                    <div class="form-check checkbox">
-                        <br>
-                        <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
-                        <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
-                    </div>
-                </div> -->
+                                                                    <div class="form-check checkbox">
+                                                                        <br>
+                                                                        <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
+                                                                        <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
+                                                                    </div>
+                                                                </div> -->
             <!-- <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-                {{ valorMensal }} -->
+                                                                {{ valorMensal }} -->
             <br><br>
             <div class="table-responsive">
                 <br><br>
@@ -85,17 +83,48 @@
                         </tr>
                     </thead>
     
-                    <tbody style="text-align: center;">
-                        <tr>
-                            <td v-for="(value, index) in valorMensal" :key="index">
-                                <money3 v-model="valorMensal[index]" v-bind="config" style="text-align: center; width: 7rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
-                                <label>R$10,00</label>
+                    <!-- <tbody style="text-align: center;">
+                                                                <tr>
+                                                                    <td v-for="(value, index) in valorMensal" :key="index">
+                                                                        <money3 v-model="valorMensal[index]" v-bind="config" style="text-align: center; width: 7rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
+                                                                        <label>R$10,00</label>
+                                            
+                                            
+                                                                    </td>
+                                            
+                                                                </tr>
+                                                            </tbody> -->
+    
+                                                            <tbody style="text-align: center;">
+    <tr>
+        <td v-for="(reqs, monthIndex) in valorMensal" :key="monthIndex">
+            <div v-if="reqs && reqs.length > 0">
+                <p v-for="(req, reqIndex) in reqs" :key="reqIndex">
+                    <span v-if="req && req.itens && req.itens.length > 0">
+                        <span v-for="(item, itemIndex) in req.itens" :key="itemIndex">
+                            <!-- {{ item.Nome }} - {{ real(parseFloat(item.Valor)) }} -->
+         {{ real(parseFloat(item.Valor)) }} 
+
+                            <br>
+                        </span>
+                    </span>
+                    <span v-else>
+                        Sem itens na requisição
+                    </span>
+                </p>
+            </div>
+            <div v-else>
+                N/A requisições
+            </div>
+        </td>
+    </tr>
+</tbody>
+
     
     
-                            </td>
     
-                        </tr>
-                    </tbody>
+    
+    
                 </table>
             </div>
         </div>
@@ -118,18 +147,18 @@
             <div class="form-group input-group" style="width: 100%;">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                                        ></span>
+                                                                                                                        ></span>
                 </div>
                 <input v-model="filtroAno" type="text" class="form-control" placeholder="Pesquisar ano / exercício" />&nbsp;&nbsp;
             </div>
     
     
             <!-- <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                           
-                                                                                                                                                                           <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                           <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                             
-                                                                                                                                                                         </button> -->
+                                                                                                                                                                                                                           
+                                                                                                                                                                                                                           <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
+                                                                                                                                                                                                                           <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
+                                                                                                                                                                             
+                                                                                                                                                                                                                         </button> -->
             <br>
             <div class="table-responsive">
                 <table class="table table-hover">
@@ -148,6 +177,7 @@
                         </tr>
                     </tbody>
                 </table>
+    
             </div>
         </div>
     </div>
@@ -159,6 +189,7 @@
 <script>
 import axios from 'axios'
 import { devURL } from '../../services/api'
+import { prodURL } from '../../services/api'
 import { Money3Component } from 'v-money3'
 
 const mockupData = {
@@ -200,11 +231,28 @@ export default {
             ano: '',
             mockupData,
             devURL: devURL,
-            projetos: ''
+            prodURL: prodURL,
+            projetos: '',
+            listaProjetos: '',
+            // codProjeto: 'NEO10003',
+            // anoProjeto: 2023,
+            projetoSelecionado: '',
+            anoSelecionado: ''
 
         };
     },
     methods: {
+        // formatarDinDin(valor){
+        //     var dindin = valor.split('.')
+        //     valor.split('.')
+        //     return `R$ ${dindin[0]},${dindin[1]}`
+        // },
+        
+
+        real(num) {
+            return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        },
+
         handleCheckboxChange(event) {
             console.log(event.target.checked);
 
@@ -221,15 +269,61 @@ export default {
         },
 
         getAllProjetos() {
-            axios.get(`${this.devURL}/sgi/projeto/lista`, {})
+            axios.get(`${this.prodURL}/sgi/projeto/lista`)
                 .then((response) => {
-                    this.projetos = response.data
-                    console.log(this.projetos)
+                    this.listaProjetos = response.data;
+                })
+                .catch((error) => {
+                    console.error('Error fetching projetos:', error);
+                });
+        },
+
+        carregarDadosProjeto() {
+            if (this.projetoSelecionado && this.anoSelecionado) {
+                console.log('Projeto Selecionado:', this.projetoSelecionado);
+                console.log('Ano Selecionado:', this.anoSelecionado);
+                const projetoSelecionado = this.listaProjetos.find(projeto => projeto.Projeto === this.projetoSelecionado);
+
+                if (projetoSelecionado) {
+                    this.codProjeto = this.projetoSelecionado;
+                    this.anoProjeto = this.anoSelecionado;
+                    console.log(this.codProjeto)
+                    console.log(this.anoProjeto)
+                    this.getRequisicoes();
+                    console.log("aqui")
+                } else {
+                    console.error('Project not found:', this.projetoSelecionado);
+                }
+            }
+        },
+
+
+
+        getRequisicoes() {
+            console.log('Cod Projeto:', this.codProjeto);
+            console.log('Ano Projeto:', this.anoProjeto);
+            axios.post(`${this.prodURL}/orcamento/projeto/mensal`, {
+                    codProjeto: this.codProjeto,
+                    anoProjeto: this.anoProjeto
+                })
+                .then((response) => {
+                    console.log('Resposta da requisição:', response.data);
+                    this.projetos = response.data;
+
+                    this.valorMensal = Array.from({ length: 12 }, (_, index) => {
+                        const monthData = this.projetos[index + 1];
+                        const requisicoes = monthData ? Object.values(monthData).filter(item => item && item.Requisição) : [];
+                        
+                        return requisicoes;
+                    });
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         }
+
+
+
 
     },
 
@@ -240,6 +334,7 @@ export default {
 
 
     mounted() {
+        this.getRequisicoes()
         this.getAllProjetos()
 
         this.$watch('orcamentoTotal', function(newVal) {
