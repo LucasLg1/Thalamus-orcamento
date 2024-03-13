@@ -10,13 +10,13 @@
                         <div style="margin-bottom: 5px;">
                             <label> Ano / Exercício: </label>
                         </div>
-                        <div style="display: flex; align-items: center;">
-                            <select v-model="anoSelecionado" class="form-select combo">
-                                                        <option value="" disabled> Selecione </option>
-                                                        <option v-for="ano in mockupData.anos" :key="ano.nome">
-                                                            {{ ano.nome }}
-                                                        </option>
-                                                    </select>
+                        <div style="display: flex; align-items: center; ">
+                            <select v-model="anoSelecionado" class="form-select combo" @change="carregarDadosProjeto">
+                                                                    <option value="" disabled> Selecione </option>
+                                                                    <option v-for="ano in mockupData.anos" :key="ano.nome">
+                                                                        {{ ano.nome }}
+                                                                    </option>
+                                                                </select>
                         </div>
                     </div>
     
@@ -25,11 +25,11 @@
                             <label> Projeto: </label>
                         </div>
                         <select v-model="projetoSelecionado" @change="carregarDadosProjeto" class="form-select combo">
-                            <option value="" disabled> Selecione </option>
-                            <option v-for="projeto in listaProjetos" :key="projeto.id">
-                                {{ projeto.Projeto }}
-                            </option>
-                        </select>
+                                        <option value="" disabled> Selecione </option>
+                                        <option :value="projeto.Projeto" v-for="projeto in listaProjetos" :key="projeto.id">
+                                            {{ projeto.Nome }}
+                                        </option>
+                                    </select>
                     </div>
     
                     <br><br>
@@ -59,21 +59,22 @@
                 <div class="col-sm-4" style="text-align: center;">
                     <h5>Orçamento Disponível</h5>
                     <div class="quadradoDisponivel">
-                        R$ 500.000
+                        <money3 :disabled="true" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: transparent;"></money3>
                     </div>
                 </div>
             </div>
             <br>
             <!-- <div class="col-sm-12">
-                                                                    <div class="form-check checkbox">
-                                                                        <br>
-                                                                        <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
-                                                                        <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
-                                                                    </div>
-                                                                </div> -->
+                                                                                <div class="form-check checkbox">
+                                                                                    <br>
+                                                                                    <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
+                                                                                    <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
+                                                                                </div>
+                                                                            </div> -->
             <!-- <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-                                                                {{ valorMensal }} -->
+                                                                            {{ valorMensal }} -->
             <br><br>
+    
             <div class="table-responsive">
                 <br><br>
                 <table class="table table-hover">
@@ -83,35 +84,23 @@
                         </tr>
                     </thead>
     
-                    <!-- <tbody style="text-align: center;">
-                                                                <tr>
-                                                                    <td v-for="(value, index) in valorMensal" :key="index">
-                                                                        <money3 v-model="valorMensal[index]" v-bind="config" style="text-align: center; width: 7rem;border: none; border-bottom: none; outline: none; background-color: white;"></money3>
-                                                                        <label>R$10,00</label>
-                                            
-                                            
-                                                                    </td>
-                                            
-                                                                </tr>
-                                                            </tbody> -->
-    
-                                                            <tbody style="text-align: center;">
+                    <tbody style="text-align: center;">
+    <tr>
+        <td v-for="(valor, index) in totalMeses" :key="index">{{ real(parseFloat(valor)) }}</td>
+    </tr>
     <tr>
         <td v-for="(reqs, monthIndex) in valorMensal" :key="monthIndex">
-            <div v-if="reqs && reqs.length > 0">
-                <p v-for="(req, reqIndex) in reqs" :key="reqIndex">
-                    <span v-if="req && req.itens && req.itens.length > 0">
-                        <span v-for="(item, itemIndex) in req.itens" :key="itemIndex">
-                            <!-- {{ item.Nome }} - {{ real(parseFloat(item.Valor)) }} -->
-         {{ real(parseFloat(item.Valor)) }} 
-
-                            <br>
+            <div v-if="reqs && Object.keys(reqs).length > 0">
+                <div v-for="(req, reqKey) in reqs" :key="reqKey">
+                    <p>
+                        <span v-if="req && req.itens && req.itens.length > 0">
+                            <span>{{ real(parseFloat(calcularTotalItensRequisicao(req.itens))) }}</span>
                         </span>
-                    </span>
-                    <span v-else>
-                        Sem itens na requisição
-                    </span>
-                </p>
+                        <span v-else>
+                            Sem itens na requisição
+                        </span>
+                    </p>
+                </div>
             </div>
             <div v-else>
                 N/A requisições
@@ -119,12 +108,6 @@
         </td>
     </tr>
 </tbody>
-
-    
-    
-    
-    
-    
                 </table>
             </div>
         </div>
@@ -147,19 +130,11 @@
             <div class="form-group input-group" style="width: 100%;">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i
-                                                                                                                        ></span>
+                                                                                                                                    ></span>
                 </div>
                 <input v-model="filtroAno" type="text" class="form-control" placeholder="Pesquisar ano / exercício" />&nbsp;&nbsp;
             </div>
     
-    
-            <!-- <button type="button" class="button-cadastrar" @click="mostrarInput = !mostrarInput" style="width: 10%;  margin-left: 10px; color: white; ">
-                                                                                                                                                                                                                           
-                                                                                                                                                                                                                           <i class="fa-solid fa-circle-plus" v-if="!mostrarInput" style="color: green;"></i>
-                                                                                                                                                                                                                           <i class="fa-solid fa-circle-minus" v-if="mostrarInput" style="color: red;"></i> 
-                                                                                                                                                                             
-                                                                                                                                                                                                                         </button> -->
-            <br>
             <div class="table-responsive">
                 <table class="table table-hover">
     
@@ -181,7 +156,6 @@
             </div>
         </div>
     </div>
-    
     
     <!-- End Modal -->
 </template>
@@ -237,17 +211,18 @@ export default {
             // codProjeto: 'NEO10003',
             // anoProjeto: 2023,
             projetoSelecionado: '',
-            anoSelecionado: ''
+            anoSelecionado: '',
+            totalMeses: []
 
         };
     },
     methods: {
-        // formatarDinDin(valor){
-        //     var dindin = valor.split('.')
-        //     valor.split('.')
-        //     return `R$ ${dindin[0]},${dindin[1]}`
-        // },
-        
+
+        calcularTotalItensRequisicao(itens) {
+            return itens.reduce((total, item) => total + parseFloat(item.Valor), 0).toFixed(2);
+        },
+
+
 
         real(num) {
             return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -280,40 +255,42 @@ export default {
 
         carregarDadosProjeto() {
             if (this.projetoSelecionado && this.anoSelecionado) {
-                console.log('Projeto Selecionado:', this.projetoSelecionado);
-                console.log('Ano Selecionado:', this.anoSelecionado);
+                // console.log('Projeto Selecionado:', this.projetoSelecionado);
+                // console.log('Ano Selecionado:', this.anoSelecionado);
                 const projetoSelecionado = this.listaProjetos.find(projeto => projeto.Projeto === this.projetoSelecionado);
 
                 if (projetoSelecionado) {
                     this.codProjeto = this.projetoSelecionado;
                     this.anoProjeto = this.anoSelecionado;
-                    console.log(this.codProjeto)
-                    console.log(this.anoProjeto)
+                    // console.log(this.codProjeto)
+                    // console.log(this.anoProjeto)
                     this.getRequisicoes();
-                    console.log("aqui")
+                    // console.log("aqui")
                 } else {
                     console.error('Project not found:', this.projetoSelecionado);
                 }
             }
         },
 
-
-
         getRequisicoes() {
-            console.log('Cod Projeto:', this.codProjeto);
-            console.log('Ano Projeto:', this.anoProjeto);
             axios.post(`${this.prodURL}/orcamento/projeto/mensal`, {
                     codProjeto: this.codProjeto,
                     anoProjeto: this.anoProjeto
                 })
                 .then((response) => {
-                    console.log('Resposta da requisição:', response.data);
                     this.projetos = response.data;
 
                     this.valorMensal = Array.from({ length: 12 }, (_, index) => {
                         const monthData = this.projetos[index + 1];
                         const requisicoes = monthData ? Object.values(monthData).filter(item => item && item.Requisição) : [];
-                        
+
+                        if (monthData && monthData.totais) {
+                            this.totalMeses[index] = monthData.totais.valorTotalMeses;
+                            console.log(`Valor total do mês: ${monthData.totais.valorTotalMeses}`);
+                        } else {
+                            this.totalMeses[index] = 0; // Se não houver dados para o mês, definimos como zero
+                        }
+
                         return requisicoes;
                     });
                 })
@@ -323,10 +300,7 @@ export default {
         }
 
 
-
-
     },
-
 
     watch: {
 
