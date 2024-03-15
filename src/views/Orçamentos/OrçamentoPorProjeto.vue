@@ -3,8 +3,11 @@
         <div class="row">
             <div class="col-sm-12" style="text-align: center;">
                 <h3><i class="fa-solid fa-diagram-project"></i></h3>
-                <h3 class="titulo"> Orçamento por Projeto: {{ codProjeto }} </h3>
-                <br>
+                <h3 class="titulo"> Orçamento por Projeto: {{ nomeProjeto }} </h3>
+                <h4>     {{ codProjeto }}</h4>
+                <h5>{{ anoProjeto }}</h5>
+           
+                <br><br>
                 <div class="row align-items-center justify-content-center">
                     <div class="col-sm-3" style="margin-bottom: 10px;">
                         <div style="margin-bottom: 5px;">
@@ -12,11 +15,11 @@
                         </div>
                         <div style="display: flex; align-items: center; ">
                             <select v-model="anoSelecionado" class="form-select combo" @change="carregarDadosProjeto">
-                                                                                                <option value="" disabled> Selecione </option>
-                                                                                                <option v-for="ano in mockupData.anos" :key="ano.nome">
-                                                                                                    {{ ano.nome }}
-                                                                                                </option>
-                                                                                            </select>
+                                                                                                    <option value="" disabled> Selecione </option>
+                                                                                                    <option v-for="ano in mockupData.anos" :key="ano.nome">
+                                                                                                        {{ ano.nome }}
+                                                                                                    </option>
+                                                                                                </select>
                         </div>
                     </div>
     
@@ -25,11 +28,11 @@
                             <label> Projeto: </label>
                         </div>
                         <select v-model="projetoSelecionado" @change="carregarDadosProjeto" class="form-select combo">
-                                                                    <option value="" disabled> Selecione </option>
-                                                                    <option :value="projeto.Projeto" v-for="projeto in listaProjetos" :key="projeto.id">
-                                                                        {{ projeto.Nome }}
-                                                                    </option>
-                                                                </select>
+                                                                        <option value="" disabled> Selecione </option>
+                                                                        <option :value="projeto.Projeto" v-for="projeto in listaProjetos" :key="projeto.id">
+                                                                            {{ projeto.Nome }}
+                                                                        </option>
+                                                                    </select>
                     </div>
     
                     <br><br>
@@ -50,8 +53,8 @@
                 <div class="col-sm-4" style="text-align: center;">
                     <h5>Orçamento Utilizado</h5>
                     <div class="quadradoUtilizado">
-                        <money3 v-model="orcamentoTotal" :disabled="true" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: transparent;"></money3> 
-
+                        <money3 v-model="orcamentoTotal" :disabled="true" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: transparent;"></money3>
+    
                         <!-- <money3 :model-value="projetos && projetos[2] && projetos[1].totais && projetos[1].totais.ValorTotalProjeto" :disabled="true" v-bind="config" style="color: black; text-align: center; width: 8rem;border: none; border-bottom: none; outline: none; background-color: transparent;"></money3> -->
                     </div>
                 </div>
@@ -65,14 +68,14 @@
             </div>
             <br>
             <!-- <div class="col-sm-12">
-                                                                                                            <div class="form-check checkbox">
-                                                                                                                <br>
-                                                                                                                <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
-                                                                                                                <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
-                                                                                                            </div>
-                                                                                                        </div> -->
+                                                                                                                <div class="form-check checkbox">
+                                                                                                                    <br>
+                                                                                                                    <input class="form-check-input" type="checkbox" id="dividir" v-model="checkBox" @change="handleCheckboxChange" />
+                                                                                                                    <label class="form-check-label" for="dividir">Dividir Igualmente ? </label> {{ checkBox }}
+                                                                                                                </div>
+                                                                                                            </div> -->
             <!-- <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-                                                                                                        {{ valorMensal }} -->
+                                                                                                            {{ valorMensal }} -->
             <br><br>
     
             <div>
@@ -92,40 +95,40 @@
             </div>
     
             <!-- <div class="table-responsive">
-                                            <br><br>
-                                            <table class="table table-hover">
-                                                <thead>
-                                                    <tr style="text-align: center;">
-                                                        <th v-for="(month, index) in meses" :key="index">{{ month }}</th>
-                                                    </tr>
-                                                </thead>
-                                
-                                                <tbody style="text-align: center;">
-                                <tr>
-                                    <td v-for="(valor, index) in totalMeses" :key="index">{{ real(parseFloat(valor)) }}</td>
-                                </tr>
-                                <tr>
-                                    <td v-for="(reqs, monthIndex) in valorMensal" :key="monthIndex">
-                                        <div v-if="reqs && Object.keys(reqs).length > 0">
-                                            <div v-for="(req, reqKey) in reqs" :key="reqKey">
-                                               <p>
-                                                    <span v-if="req && req.itens && req.itens.length > 0">
-                                                        <span>{{ real(parseFloat(calcularTotalItensRequisicao(req.itens))) }}</span>
-                                                    </span>
-                                                    <span v-else>
-                                                        Sem itens na requisição
-                                                    </span>
-                                                </p> 
+                                                <br><br>
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr style="text-align: center;">
+                                                            <th v-for="(month, index) in meses" :key="index">{{ month }}</th>
+                                                        </tr>
+                                                    </thead>
+                                    
+                                                    <tbody style="text-align: center;">
+                                    <tr>
+                                        <td v-for="(valor, index) in totalMeses" :key="index">{{ real(parseFloat(valor)) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td v-for="(reqs, monthIndex) in valorMensal" :key="monthIndex">
+                                            <div v-if="reqs && Object.keys(reqs).length > 0">
+                                                <div v-for="(req, reqKey) in reqs" :key="reqKey">
+                                                   <p>
+                                                        <span v-if="req && req.itens && req.itens.length > 0">
+                                                            <span>{{ real(parseFloat(calcularTotalItensRequisicao(req.itens))) }}</span>
+                                                        </span>
+                                                        <span v-else>
+                                                            Sem itens na requisição
+                                                        </span>
+                                                    </p> 
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div v-else>
-                                            N/A requisições
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                                            </table>
-                                        </div> -->
+                                            <div v-else>
+                                                N/A requisições
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                                </table>
+                                            </div> -->
         </div>
     </div>
     
@@ -133,32 +136,32 @@
     <div class="modal-mask" @click="fecharModalFora" v-if="modalArea">
         <div style="max-height: 60%;" class="modal-container">
             <div style="width: 50rem;">
-                <h3>
-                    {{codProjeto}}
-                </h3>
+                <h4>
+                    {{codProjeto}} - {{ nomeProjeto }}
+                </h4>
             </div>
             <template v-for="(reqSet, setIndex) in filtrarRequisicoesPorMes(detalheProjeto, this.mesDetalhe)" :key="setIndex">
-                        <div v-if="setIndex !== 'totais'"> 
-                            <div v-for="(req, reqKey) in reqSet" :key="reqKey">
-                                <br>
-                                <div :style="{'display' : (req.Requisição == null) ? 'none' : ''}">
-    
-                                    <h5>
-                                        Requisição: {{ req.Requisição }}
-                                    </h5>
-                                    <b>Solicitante:</b> {{ req.Solicitante }} <br>
-                                    <b>Aprovação:</b> {{ req.Aprovação }} <br>
-                                    <b>Fornecedor:</b> {{ req.Fornecedor }}<br>
-                                    <b>Data:</b> {{ (req.Data) }}<br>
-                                    
-                                    <h7><b>Item(s):</b></h7>
-                                    <div v-for="item in req.itens" :key="item.Nome">
-                                        <b>Nome:</b> {{ item.Nome }}<br>
-                                        <b>Valor:</b> {{ real(parseFloat(item.Valor)) }}<br>
+                            <div v-if="setIndex !== 'totais'"> 
+                                <div v-for="(req, reqKey) in reqSet" :key="reqKey">
+                                    <br>
+                                    <div :style="{'display' : (req.Requisição == null) ? 'none' : ''}">
+        
+                                        <h5>
+                                            Requisição: {{ req.Requisição }}
+                                        </h5>
+                                        <b>Solicitante:</b> {{ req.Solicitante }} <br>
+                                        <b>Aprovação:</b> {{ req.Aprovação }} <br>
+                                        <b>Fornecedor:</b> {{ req.Fornecedor }}<br>
+                                        <b>Data:</b> {{ (req.Data) }}<br>
+                                        
+                                        <h7><b>Item(s):</b></h7>
+                                        <div v-for="item in req.itens" :key="item.Nome">
+                                            <b>Nome:</b> {{ item.Nome }}<br>
+                                            <b>Valor:</b> {{ real(parseFloat(item.Valor)) }}<br>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 </template>
     </div>
 </div>
@@ -264,13 +267,14 @@ export default {
             prodURL: prodURL,
             projetos: '',
             listaProjetos: '',
-            // codProjeto: 'NEO10003',
-            // anoProjeto: 2023,
+            codProjeto: sessionStorage.getItem('idProjeto'),
+            anoProjeto: new Date().getFullYear(),
             projetoSelecionado: '',
             anoSelecionado: '',
             totalMeses: [],
             detalheProjeto: [],
-            nomeModal: ''
+            nomeModal: '',
+            nomeProjeto: sessionStorage.getItem('nomeProjeto')
 
         };
     },
@@ -336,19 +340,21 @@ export default {
         },
 
         carregarDadosProjeto() {
-    if (this.projetoSelecionado && this.anoSelecionado) {
+            if (this.projetoSelecionado && this.anoSelecionado) {
 
-        const projetoSelecionado = this.listaProjetos.find(projeto => projeto.Projeto === this.projetoSelecionado);
-if (projetoSelecionado) {
-    this.codProjeto = projetoSelecionado.Projeto; 
-    this.anoProjeto = this.anoSelecionado;
-    this.getRequisicoes();
-} else {
-    console.error('Project not found:', this.projetoSelecionado);
-}
+                const projetoSelecionado = this.listaProjetos.find(projeto => projeto.Projeto === this.projetoSelecionado);
+                if (projetoSelecionado) {
+                    this.codProjeto = projetoSelecionado.Projeto;
+                    this.anoProjeto = this.anoSelecionado;
+                    this.nomeProjeto = projetoSelecionado.Nome
 
-    }
-},
+                    this.getRequisicoes();
+                } else {
+                    console.error('Project not found:', this.projetoSelecionado);
+                }
+
+            }
+        },
 
         getRequisicoes() {
             axios.post(`${this.prodURL}/orcamento/projeto/mensal`, {
@@ -360,10 +366,10 @@ if (projetoSelecionado) {
                     this.detalheProjeto = response.data;
                     // console.log(this.detalheProjeto)
                     const primeiraChave = Object.keys(response.data)[0];
-        const orcamentoTotal = response.data[primeiraChave]?.totais?.ValorTotalProjeto;
-        console.log(orcamentoTotal); 
+                    const orcamentoTotal = response.data[primeiraChave] ?.totais ?.ValorTotalProjeto;
+                    // console.log(orcamentoTotal);
 
-        this.orcamentoTotal = orcamentoTotal || 0;
+                    this.orcamentoTotal = orcamentoTotal || 0;
 
                     this.valorMensal = Array.from({ length: 12 }, (_, index) => {
                         const monthData = this.projetos[index + 1];
@@ -436,6 +442,4 @@ if (projetoSelecionado) {
     border-color: green;
     background-color: rgb(225, 243, 233);
 }
-
-
 </style>

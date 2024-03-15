@@ -21,8 +21,8 @@
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
                         <span class="input-group-text">
-                                                                                                                                                                                                                                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                                                                                                                                                                                                                                        </span>
+                                                                                                                                                                                                                                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                                                                                                                                                                                                                                    </span>
                     </div>
                     <input v-model="filtroProjeto" @input="pesquisaProjeto" type="text" class="form-control" placeholder="Pesquisar projeto" />&nbsp;&nbsp;
     
@@ -39,10 +39,10 @@
                             </tr>
                         </thead>
                         <tbody style="text-align: center; cursor: pointer;">
-                            <tr v-for="(projeto, index) in paginatedData" :key="index">
+                            <tr v-for="(projeto) in paginatedData" @click="getProjeto(projeto.Projeto)" :key="projeto.Projeto">
                                 <td>{{ projeto.Nome }}</td>
-    
                             </tr>
+    
     
                         </tbody>
                     </table>
@@ -77,10 +77,26 @@ export default {
             filtroProjeto: '',
             devURL: devURL,
             currentPage: 1,
-            itemsPerPage: 5,
+            itemsPerPage: 5
+
         };
     },
     methods: {
+        getProjeto(projetoId) {
+            // console.log("ID do projeto clicado:", projetoId);
+            if (this.projetos.length > 0) {
+                const projeto = this.projetos.find(projeto => projeto.Projeto === projetoId);
+                // console.log("Projeto encontrado:", projeto);
+                if (projeto) {
+                    console.log("Armazenando projeto no sessionStorage:", projeto);
+                    sessionStorage.setItem('idProjeto', projetoId);
+                    sessionStorage.setItem('nomeProjeto', projeto.Nome);
+                    this.$router.push({ name: "OrcamentoProjeto" });
+                }
+            }
+        },
+
+
         fecharModalFora(event) {
             if (event.target.classList.contains('modal-mask')) {
                 this.modalArea = false;
