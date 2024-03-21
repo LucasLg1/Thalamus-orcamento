@@ -80,7 +80,7 @@
                 </div>
             </div>
             <p>Orçamento Dividido: R$ {{ orcamentoDividido }}</p>
-            {{ valorMensal }}
+            <!-- {{ valorMensal }} -->
             <br>
             <div class="table-responsive">
                 <table class="table table-hover">

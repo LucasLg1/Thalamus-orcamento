@@ -5,7 +5,7 @@
             <!-- <router-link to="/">Home</router-link> | -->
             <router-link to="/area/novo">Gerenciamento</router-link> |
             <router-link to="/orcamento/area">Orçamento por Área</router-link> |
-            <router-link to="/orcamento/projeto">Orçamento por Projeto</router-link> |
+            <router-link to="/orcamento/projeto">Orçamento por Projeto</router-link> 
 
             <!-- <router-link to="/orcamento/mensal">Orçamento Mensal</router-link> -->
     

@@ -22,6 +22,7 @@
     "vue-autosuggest": "^2.2.0",
     "vue-json-excel": "^0.3.0",
     "vue-router": "^4.0.3",
+    "vue-select": "^3.20.2",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
