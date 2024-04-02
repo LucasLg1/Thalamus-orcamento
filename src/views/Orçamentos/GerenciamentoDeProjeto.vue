@@ -66,7 +66,6 @@
 
 <script>
 import axios from 'axios';
-import { devURL } from '../../services/api';
 
 export default {
     data() {
@@ -75,7 +74,6 @@ export default {
             mostrarInput: false,
             projetos: [],
             filtroProjeto: '',
-            devURL: devURL,
             currentPage: 1,
             itemsPerPage: 5
 

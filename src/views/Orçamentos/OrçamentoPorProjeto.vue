@@ -234,8 +234,6 @@ import 'vue-select/dist/vue-select.css'; // Importe o CSS aqui
 import moment from 'moment-timezone';
 
 import axios from 'axios'
-import { devURL } from '../../services/api'
-import { prodURL } from '../../services/api'
 import { Money3Component } from 'v-money3'
 
 const mockupData = {
@@ -280,8 +278,6 @@ export default {
             filtroAno: '',
             ano: '',
             mockupData,
-            devURL: devURL,
-            prodURL: prodURL,
             projetos: '',
             listaProjetos: '',
             codProjeto: sessionStorage.getItem('idProjeto'),

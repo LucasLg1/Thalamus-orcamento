@@ -284,7 +284,7 @@ export default {
             }, 200);
         },
         getGerenteseSetor() {
-            axios.get('http://192.168.0.6:8000/api/setor/', {})
+            axios.get('setor/', {})
                 .then((response) => {
                     this.gerente = response.data
                     this.gerente = this.gerente.map(item => ({
@@ -297,7 +297,7 @@ export default {
                     console.error(error);
                 });
 
-            axios.get('http://192.168.0.6:8000/api/setor', {})
+            axios.get('setor', {})
                 .then((response) => {
                     this.setores = response.data
                 })
