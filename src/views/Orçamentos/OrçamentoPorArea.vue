@@ -5,7 +5,7 @@
                                                                                                           Áreas e Projetos
                                                                                                         </button> -->
             <div class="col-sm-12" style="text-align: center;">
-                <h3><i class="fa-solid fa-scale-balanced"></i></h3>
+                <!-- <h3><i class="fa-solid fa-scale-balanced"></i></h3> -->
                 <h3 class="titulo"> Orçamento por Área: </h3>
     
                 <br>

@@ -1,13 +1,11 @@
 import axios from "axios";
 
-  const devURL= 'http://192.168.0.6:8000/api';
-  const prodURL = 'http://192.168.0.5:8000/api'
-   const baseURL = 'http://192.168.0.5:8082';
+  const prodURL = process.env.VUE_APP_ROOT_API
+
 
 
    const api = axios.create({
-    baseURL: baseURL,
-    devURL: devURL,
+    prodURL: prodURL
  });
 
 //local de armazenamento das fotos de visitante e colaborador
@@ -29,7 +27,5 @@ api.interceptors.request.use(
     }
   );
 
-  export {devURL};
-  export {prodURL};
 
 export default api;

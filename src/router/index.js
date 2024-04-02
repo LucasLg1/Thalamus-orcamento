@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 //Home
-import HomeView from '../views/HomeView.vue'
+// import HomeView from '../views/HomeView.vue'
 
 //Area
 import GerenciamentoDeDespesa from '../views/Orçamentos/GerenciamentoDeDespesa.vue'
@@ -23,20 +23,15 @@ import EntregaMateriais from '../views/Compras/EntregaMateriais'
 import SolicitacaoMateriais from '../views/Compras/SolicitaçãoMateriais'
 
 //Teste
-import TesteView from '../views/TesteView.vue'
 const routes = [
-{
-  path: '/teste',
-  name: 'teste',
-  component: TesteView
-},
+
 
   //Home
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: HomeView
+  // },
 
   //Area
   {

@@ -6,7 +6,7 @@
                 <router-link to="/projeto/novo">Projetos</router-link>
             </nav>
             <div class="col-sm-12" style="text-align: center;">
-                <h3 class="titulo"> Thalamus Orçamentos <i class="fa-solid fa-piggy-bank"></i> </h3>
+                <h3 class="titulo"> Thalamus Orçamentos </h3>
                 <br /><br />
             </div>
         </div>
@@ -14,9 +14,9 @@
     
         <!-- COLUNA 1 -->
         <div class="row text-center">
-            <div class="col-sm-5" style="background-color: white; border: 1px solid grey; border-radius: 10px; padding: 1rem; margin-right: 150px;">
+            <div class="col-sm-10" style="background-color: white; border: 1px solid grey; border-radius: 10px; padding: 1rem; margin-right: 150px;">
                 <br />
-                <h5 class="table-title"> Despesas Correntes &nbsp; <i class="fa-solid fa-chart-line"></i></h5>
+                <h5 class="table-title"> Grupo de Contas &nbsp; <i class="fa-solid fa-chart-line"></i></h5>
                 <div class="form-group input-group" style="width: 100%;">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -24,12 +24,12 @@
                     <input v-model="searchDespesa" @input="filterDespesas" type="text" class="form-control" placeholder="Pesquisar despesas" />&nbsp;&nbsp;
                 </div>
                 <br />
-                <label style="color: dimgray;">Escolha uma área, para visualizar as categorias</label>
+                <label style="color: dimgray;">Escolha um grupo, para visualizar as categorias</label>
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                             <tr style="text-align: center; ">
-                                <th scope="col">Área</th>
+                                <th scope="col">Grupo</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -49,11 +49,45 @@
                     </ul>
                 </div>
                 <br>
+                <div class="col-sm-30" style="border: 1px solid grey;  background-color: white; border-radius: 10px;">
+                <br /><br>
+                <h5 class="table-title">Categorias&nbsp; <i class="fa-solid fa-list"></i></h5>
+                <div class="form-group input-group" style="width: 100%;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    </div>
+                    <input v-model="searchCategoria" @input="filterCategoria" type="text" class="form-control" placeholder="Pesquisar categoria" />&nbsp;&nbsp;                </div>
+                <br />
+                <label style="color: dimgray;">Escolha uma categoria, para visualizar o orçamento</label>
+    
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th scope="col">Categoria</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center; cursor: pointer;">
+                            <tr v-for="(categoria, index) in paginatedCategorias" :key="index">
+                                <td>{{ categoria }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <!-- <ul class="pagination">
+                  <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(filteredCategorias.length / itemsPerPage)" :key="page">
+                    <a class="page-link" @click="currentPage = page">{{ page }}</a>
+                  </li>
+                </ul> -->
+                </div>
+                <br>
+            </div>
             </div>
             <!--END COLUNA 1-->
     
             <!-- COLUNA 2-->
-            <div class="col-sm-5" style="border: 1px solid grey;  background-color: white; border-radius: 10px;">
+            <!-- <div class="col-sm-5" style="border: 1px solid grey;  background-color: white; border-radius: 10px;">
                 <br /><br>
                 <h5 class="table-title">Categorias&nbsp; <i class="fa-solid fa-list"></i></h5>
                 <div class="form-group input-group" style="width: 100%;">
@@ -79,14 +113,10 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <!-- <ul class="pagination">
-                  <li class="page-item" :class="{ 'active': currentPage === page }" v-for="page in Math.ceil(filteredCategorias.length / itemsPerPage)" :key="page">
-                    <a class="page-link" @click="currentPage = page">{{ page }}</a>
-                  </li>
-                </ul> -->
+               
                 </div>
                 <br>
-            </div>
+            </div> -->
             <!--END COLUNA 2-->
     
     

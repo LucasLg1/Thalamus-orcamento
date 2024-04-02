@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12" style="text-align: center;">
-                <h3><i class="fa-solid fa-diagram-project"></i></h3>
+                <!-- <h3><i class="fa-solid fa-diagram-project"></i></h3> -->
                 <h4 class="titulo"> Orçamento por Projeto: {{ nomeProjeto }} </h4>
                 <h4>{{ codProjeto }}</h4>
                 <h5>{{ anoProjeto }}</h5>
@@ -344,7 +344,7 @@ export default {
         },
 
         getAllProjetos() {
-            axios.get(`${this.prodURL}/sgi/projeto/lista`)
+            axios.get(`sgi/projeto/lista`)
                 .then((response) => {
                     this.listaProjetos = response.data;
                 })
@@ -354,6 +354,9 @@ export default {
         },
 
         carregarDadosProjeto() {
+
+
+        
             if (this.projetoSelected && this.anoSelecionado) {
 
                 const projetoSelecionado = this.listaProjetos.find(projeto => projeto.Projeto === this.projetoSelected);
@@ -371,7 +374,7 @@ export default {
         },
 
         getRequisicoes() {
-            axios.post(`${this.prodURL}/orcamento/projeto/mensal`, {
+            axios.post(`orcamento/projeto/mensal`, {
                     codProjeto: this.codProjeto,
                     anoProjeto: this.anoProjeto
                 })

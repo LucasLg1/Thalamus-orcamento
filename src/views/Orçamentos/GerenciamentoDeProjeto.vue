@@ -6,7 +6,7 @@
                 <router-link to="/projeto/novo">Projetos</router-link>
             </nav>
             <div class="col-sm-12" style="text-align: center;">
-                <h3 class="titulo"> Thalamus Orçamentos <i class="fa-solid fa-piggy-bank"></i> </h3>
+                <h3 class="titulo"> Thalamus Orçamentos </h3>
                 <br><br>
             </div>
         </div>
@@ -103,7 +103,7 @@ export default {
             }
         },
         getAllProjetos() {
-            axios.get(`${this.devURL}/sgi/projeto/lista`)
+            axios.get(`sgi/projeto/lista`)
                 .then((response) => {
                     this.projetos = response.data;
                     // console.log("Projetos loaded:", this.projetos);
