@@ -1,16 +1,12 @@
 import axios from "axios";
 
-  const baseURL = process.env.VUE_APP_ROOT_API
-
-
-
-   const api = axios.create({
-    baseURL: baseURL
+ const api = axios.create({
+    baseURL: process.env.VUE_APP_ROOT_API
  });
 
 //local de armazenamento das fotos de visitante e colaborador
 export const urlFoto = {
-  caminhoFoto: `http://192.168.0.5:8000/storage/`,
+  caminhoFoto: process.env.VUE_APP_ROOT_STORAGE
 };
 
 
