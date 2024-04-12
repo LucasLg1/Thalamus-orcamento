@@ -233,7 +233,7 @@ import 'vue-select/dist/vue-select.css'; // Importe o CSS aqui
 
 import moment from 'moment-timezone';
 
-import axios from 'axios'
+import api from '../../services/api'
 import { Money3Component } from 'v-money3'
 
 const mockupData = {
@@ -340,7 +340,7 @@ export default {
         },
 
         getAllProjetos() {
-            axios.get(`sgi/projeto/lista`)
+            api.get(`sgi/projeto/lista`)
                 .then((response) => {
                     this.listaProjetos = response.data;
                 })
@@ -370,7 +370,7 @@ export default {
         },
 
         getRequisicoes() {
-            axios.post(`orcamento/projeto/mensal`, {
+            api.post(`orcamento/projeto/mensal`, {
                     codProjeto: this.codProjeto,
                     anoProjeto: this.anoProjeto
                 })

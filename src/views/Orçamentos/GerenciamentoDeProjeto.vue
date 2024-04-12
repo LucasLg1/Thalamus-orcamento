@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '../../services/api';
 
 export default {
     data() {
@@ -101,7 +101,7 @@ export default {
             }
         },
         getAllProjetos() {
-            axios.get(`sgi/projeto/lista`)
+            api.get(`sgi/projeto/lista`)
                 .then((response) => {
                     this.projetos = response.data;
                     // console.log("Projetos loaded:", this.projetos);

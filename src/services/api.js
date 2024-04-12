@@ -1,7 +1,9 @@
 import axios from "axios";
 
  const api = axios.create({
-    baseURL: process.env.VUE_APP_ROOT_API
+    baseURL: process.env.VUE_APP_ROOT_API,
+    devURL: process.env.VUE_APP_ROOT_DEV,
+
  });
 
 //local de armazenamento das fotos de visitante e colaborador

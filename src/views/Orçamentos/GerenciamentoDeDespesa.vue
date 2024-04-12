@@ -183,7 +183,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '../../services/api';
 
 const mockupData = {
     areas: [
@@ -284,7 +284,7 @@ export default {
             }, 200);
         },
         getGerenteseSetor() {
-            axios.get('setor/', {})
+            api.get('setor/', {})
                 .then((response) => {
                     this.gerente = response.data
                     this.gerente = this.gerente.map(item => ({
@@ -297,7 +297,7 @@ export default {
                     console.error(error);
                 });
 
-            axios.get('setor', {})
+            api.get('setor', {})
                 .then((response) => {
                     this.setores = response.data
                 })
